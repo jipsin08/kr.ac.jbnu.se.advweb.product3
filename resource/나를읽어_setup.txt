@@ -1,0 +1,20 @@
+1. MySQL Setup
+  1.1 MySQL 설치시 Root 계정 설정 id/password: root/root
+  1.2 Database 설치 및 Root에 접근 권한 설정
+
+	create database simpleweb;
+	use simpleweb;
+	grant all privileges on simpleweb.* to root@localhost ;
+	flush privileges;
+
+  1.3 Database table 설정
+    databasescript.sql 파일을 MySQL Workbench에서 실행시킨다. 
+
+2. Tomcat WAS 설정
+  2.1 http://shuman.tistory.com/116에 따라서 Tomcat 설치
+  2.2 설치시 Tomcat 8.5 이상으로 설치 권장!
+  
+3. memberMgmt 실행 Run As > Run On Server
+http://localhost:8080/product/
+ 
+ 
