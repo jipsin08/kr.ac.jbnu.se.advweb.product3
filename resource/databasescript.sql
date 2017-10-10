@@ -1,6 +1,6 @@
 
 
---- create database and set previledge to root account
+-- create database and set previledge to root account
 create database simpleweb;
 use simpleweb;
 grant all privileges on simpleweb.* to root@localhost ;
