@@ -9,8 +9,8 @@ _________________________________________________________ -->
         <div class="navbar-header">
 
             <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                <img src="img/logo.png" alt="ssogongnawa logo" class="hidden-xs">
-                <img src="img/logo-small.png" alt="ssogongnawa logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                <img src="resources/img/logo.png" alt="ssogongnawa logo" class="hidden-xs">
+                <img src="resources/img/logo-small.png" alt="ssogongnawa logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
             </a>
             <div class="navbar-buttons">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -170,12 +170,12 @@ _________________________________________________________ -->
                                     <div class="col-sm-3">
                                         <div class="banner">
                                             <a href="#">
-                                                <img src="img/banner.jpg" class="img img-responsive" alt="">
+                                                <img src="resources/img/banner.jpg" class="img img-responsive" alt="">
                                             </a>
                                         </div>
                                         <div class="banner">
                                             <a href="#">
-                                                <img src="img/banner2.jpg" class="img img-responsive" alt="">
+                                                <img src="resources/img/banner2.jpg" class="img img-responsive" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@ _________________________________________________________ -->
                                     <div class="col-sm-3">
                                         <h5>Shop</h5>
                                         <ul>
-                                            <li><a href="index.html">Homepage</a>
+                                            <li><a href="homeView.jsp">Homepage</a>
                                             </li>
                                             <li><a href="category.html">Category - sidebar left</a>
                                             </li>
