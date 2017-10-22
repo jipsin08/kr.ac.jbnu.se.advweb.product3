@@ -11,7 +11,7 @@ public class MySQLConnUtils {
 		String hostName = "localhost";
 		String dbName = "simpleweb";
 		String userName = "root";
-		String password = "bo115201";
+		String password = "root";
 		return getMySQLConnection(hostName, dbName, userName, password);
 	}
 
@@ -23,7 +23,7 @@ public class MySQLConnUtils {
 		// URL Connection for MySQL:
 		// Example:
 		// jdbc:mysql://localhost:3306/simplehr
-		String connectionURL = "jdbc:mysql://" + hostName + ":3307/" + dbName;
+		String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
 
 		Connection conn = DriverManager.getConnection(connectionURL, userName, password);
 		return conn;
