@@ -75,6 +75,22 @@ public class DBUtils {
 		}
 		return list;
 	}
+	
+	public static List<Product> queryCart(Connection conn, String userName) throws SQLException {
+		String sql = "Select cart_item from cart where cart_user='" + userName + "'";
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		
+		ResultSet rs = pstm.executeQuery();
+		List<Product> list = new ArrayList<Product>();
+		while(rs.next()) {
+			Product product;
+			product = findProduct(conn, rs.getString("cart_item"));
+			list.add(product);
+		}
+		
+		return list;
+	}
 
 	public static Product findProduct(Connection conn, String code) throws SQLException {
 		String sql = "Select a.Code, a.Name, a.Price from Product a where a.Code=?";
