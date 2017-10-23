@@ -21,7 +21,7 @@ _________________________________________________________ -->
                     <span class="sr-only">Toggle search</span>
                     <i class="fa fa-search"></i>
                 </button>
-                <a class="btn btn-default navbar-toggle" href="basket.html">
+                <a class="btn btn-default navbar-toggle" href="${pageContext.request.contextPath}/basket">
                     <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
                 </a>
             </div>
@@ -225,7 +225,7 @@ _________________________________________________________ -->
                                     <div class="col-sm-3">
                                         <h5>Order process</h5>
                                         <ul>
-                                            <li><a href="basket.html">Shopping cart</a>
+                                            <li><a href="${pageContext.request.contextPath}/basket">Shopping cart</a>
                                             </li>
                                             <li><a href="checkout1.html">Checkout - step 1</a>
                                             </li>
@@ -270,7 +270,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
+                <a href="${pageContext.request.contextPath}/basket" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
             </div>
             <!--/.nav-collapse -->
 
