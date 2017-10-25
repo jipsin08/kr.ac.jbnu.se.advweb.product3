@@ -91,6 +91,17 @@ public class DBUtils {
 		
 		return list;
 	}
+	
+	public static void insertCart(Connection conn, String userName, String code) throws SQLException {
+		String sql = "Insert into cart(cart_user, cart_item) values (?,?)";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, userName);
+		pstm.setString(2, code);
+
+		pstm.executeUpdate();
+	}
 
 	public static Product findProduct(Connection conn, String code) throws SQLException {
 		String sql = "Select a.Code, a.Name, a.Price from Product a where a.Code=?";
