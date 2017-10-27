@@ -3,7 +3,6 @@ package kr.ac.jbnu.se.advweb.product.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,16 +16,16 @@ import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
 /**
- * Servlet implementation class ProductDetailServlet
+ * Servlet implementation class DeleteCartProduct
  */
-@WebServlet("/detail")
-public class ProductDetailServlet extends HttpServlet {
+@WebServlet("/deleteCartProduct")
+public class DeleteCartProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductDetailServlet() {
+    public DeleteCartProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,19 +39,14 @@ public class ProductDetailServlet extends HttpServlet {
 		String productCode = request.getParameter("product");
 		
 		String errorString = null;
-		Product product = null;
 		try {
-			product = DBUtils.findProduct(conn, productCode);
+			DBUtils.deleteCart(conn, "tom", productCode);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
 		}
 		
-		request.setAttribute("product", product);
-		
-		RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/detailView.jsp");
-        dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/basket");
 	}
 
 	/**
@@ -60,17 +54,7 @@ public class ProductDetailServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Connection conn = MyUtils.getStoredConnection(request);
-		String productCode = request.getParameter("product");
-		
-		String errorString = null;
-		List<Product> list = null;
-		try {
-			DBUtils.insertCart(conn, "tom", productCode);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			errorString = e.getMessage();
-		}
+		doGet(request, response);
 	}
 
 }

@@ -93,7 +93,28 @@ public class DBUtils {
 	}
 	
 	public static void insertCart(Connection conn, String userName, String code) throws SQLException {
-		String sql = "Insert into cart(cart_user, cart_item) values (?,?)";
+		String sql = "select * from cart where cart_user=? and cart_item=?";
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, userName);
+		pstm.setString(2, code);
+		
+		ResultSet rs = pstm.executeQuery();
+		
+		if(!rs.next()) {
+			sql = "Insert into cart(cart_user, cart_item) values (?,?)";
+
+			pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, userName);
+			pstm.setString(2, code);
+
+			pstm.executeUpdate();
+		}
+	}
+	
+	public static void deleteCart(Connection conn, String userName, String code) throws SQLException {
+		String sql = "Delete From cart where cart_user= ? and cart_item= ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 

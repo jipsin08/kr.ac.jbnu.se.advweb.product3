@@ -60,7 +60,7 @@
                         </li>
                         <li><a href="#">Tops</a>
                         </li>
-                        <li>White Blouse Armani</li>
+                        <li>${product.name}</li>
                     </ul>
 
                 </div>
@@ -236,14 +236,13 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="box">
-                                <h1 class="text-center">White Blouse Armani</h1>
+                                <h1 class="text-center">${product.name}</h1>
                                 <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
                                 </p>
-                                <p class="price">$124.00</p>
+                                <p class="price">&#8361; ${product.price}</p>
 
                                 <p class="text-center buttons">
-                                	<a id="cart_a_id" onclick="" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                    <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                	<button id="cart_btn_id" data-toggle="modal" data-target="#cart-modal" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                                 </p>
 
 
@@ -269,6 +268,26 @@
                         </div>
 
                     </div>
+                    
+                    <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+				        <div class="modal-dialog modal-sm">
+				            <div class="modal-content">
+				                <div class="modal-header">
+				                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				                    <h4 class="modal-title">Add To Cart</h4>
+				                </div>
+				                <div class="modal-body">
+				                	<p class="text-center text-muted">상품이 장바구니에 담겼습니다.</p>
+				                	<p class="text-center text-muted">바로 확인 하시겠습니까?</p>
+				                	<p class="text-center">
+				                        <button onclick="location.href='${pageContext.request.contextPath}/basket'" class="btn btn-primary">예</button>
+				                        <button data-dismiss="modal" aria-hidden="true" class="btn btn-primary">아니요</button>
+				                    </p>
+
+				                </div>
+				            </div>
+				        </div>
+				    </div>
 
 
                     <div class="box" id="details">
@@ -509,13 +528,12 @@
     <script src="resources/js/jquery-1.11.0.min.js"></script>
     <script>
     $(document).ready(function() {
-    	$("#cart_a_id").click(function() {
-    		$.post('${pageContext.request.contextPath}/detail', {
-    			userName : "tom",
-				productCode : "P002"
-    		}, function(data) {
-    			window.location.replace('${pageContext.request.contextPath}/basket');
-    		});
+    	$("#cart_btn_id").click(function() {
+    		$.ajax({
+    	    	url: "${pageContext.request.contextPath}/detail",
+    	    	type: "post",
+    	    	data: {product : "${product.code}"}
+    	    });
     	});
     });
 	</script>

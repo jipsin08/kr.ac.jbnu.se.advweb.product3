@@ -71,16 +71,19 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th colspan="2">Product</th>
-                                            <th>Quantity</th>
-                                            <th>Unit price</th>
-                                            <th>Discount</th>
-                                            <th colspan="2">Total</th>
+                                        	<th colspan="3"></th>
+                                            <th colspan="2">상품</th>
+<!--                                             <th>Quantity</th> -->
+<!--                                             <th>Unit price</th> -->
+<!--                                             <th>Discount</th> -->
+                                            <th colspan="2">가격</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<c:set var="total" value="0"/>
                                     	<c:forEach items="${cartList}" var="product">
                                     		<tr>
+                                    			<td/><td/><td/>
                                     			<td>
                                     				<a href="#">
                                                     	<img src="resources/img/detailsquare.jpg" alt="White Blouse Armani">
@@ -88,21 +91,20 @@
                                                	</td>
                                                	<td><a href="#">${product.name}</a>
                                                	</td>
-                                               	<td>
-                                                	<input type="number" value="2" class="form-control">
-                                           	 	</td>
                                                	<td>${product.price}</td>
-                                               	<td>$0.00</td>
-                                               	<td><c:out value="${product.price * 2}"></c:out></td>
-                                               	<td><a href="#"><i class="fa fa-trash-o"></i></a>
+<!--                                                	<td>$0.00</td> -->
+<%--                                                	<td><c:out value="${product.price * 2}"></c:out></td> --%>
+                                               	<td><a href="deleteCartProduct?product=${product.code}"><i class="fa fa-trash-o"></i></a>
                                             	</td>
                                             </tr>
+                                            <c:set var="total" value="${total+product.price}"/>
 										</c:forEach>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th colspan="5">Total</th>
-                                            <th colspan="2">$446.00</th>
+                                        	<th colspan="3"></th>
+                                            <th colspan="2">Total</th>
+                                            <th colspan="2">${total}</th>
                                         </tr>
                                     </tfoot>
                                 </table>

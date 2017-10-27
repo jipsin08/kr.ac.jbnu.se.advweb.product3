@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-6" data-animate="fadeInDown">
             <ul class="menu">
-                <li><a href="home" data-toggle="modal" data-target="#login-modal">Login</a>
+                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                 </li>
                 <li><a href="user_register">Register</a>
                 </li>
