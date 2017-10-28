@@ -8,6 +8,11 @@ public class UserAccount {
 	private String userName;
 	private String gender;
 	private String password;
+	
+	private String id;
+	private String Major;
+	private String email;
+	
 
 	public UserAccount() {
 
@@ -37,4 +42,27 @@ public class UserAccount {
 		this.password = password;
 	}
 
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getMajor() {
+		return Major;
+	}
+	
+	public void setMajor(String major) {
+		Major = major;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

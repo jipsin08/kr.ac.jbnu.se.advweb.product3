@@ -36,6 +36,28 @@
     <link href="resources/css/custom.css" rel="stylesheet">
 
     <script src="resources/js/respond.min.js"></script>
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+	    $(document).ready(function() {
+			// Newly Added by STKim. 
+			// The following code is for submitting the form data to server and redirect to another page. 
+			$("#form_user_register").on('submit', function(e) {
+				$.post('${pageContext.request.contextPath}/user_register', {
+					name : $("#name").val(),
+					id : $("#student_number").val(),
+					major : $("#major").val(),
+					email : $("#email").val(),
+					password : $("#password").val(),
+				}, function(data) {
+					// 					// move another page
+					// 					var win = window.open();
+					// 					win.document.write(data);
+				});
+			});
+		})
+    </script>
+    
 
     <link rel="shortcut icon" href="favicon.png">
 
@@ -54,24 +76,24 @@
                 <div class="col-md-12">
 
                     <ul class="breadcrumb">
-                        <li><a href="home">Home</a>
+                        <li><a href="home">홈</a>
                         </li>
-                        <li>Register / Sign in</li>
+                        <li>회원가입 / 로그인</li>
                     </ul>
 
                 </div>
 
                 <div class="col-md-6">
                     <div class="box">
-                        <h1>New account</h1>
+                        <h1>회원가입</h1>
 
-                        <p class="lead">Not our registered customer yet?</p>
+                        <p class="lead">아직 SsoGongnawa의 회원이 아니세요?</p>
                         <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
                         <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
 
                         <hr>
 
-                        <form action="finished_register" method="post">
+                        <form action="finished_register" id="form_user_register">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name">

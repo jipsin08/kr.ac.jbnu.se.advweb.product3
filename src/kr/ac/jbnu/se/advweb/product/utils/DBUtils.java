@@ -11,6 +11,9 @@ import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
 public class DBUtils {
+	
+//  Difference Between executeQuery() Vs executeUpdate() Vs execute() In JDBC	
+//	http://javaconceptoftheday.com/difference-between-executequery-executeupdate-execute-in-jdbc/
 
 	public static UserAccount findUser(Connection conn, //
 			String userName, String password) throws SQLException {
@@ -75,33 +78,33 @@ public class DBUtils {
 		}
 		return list;
 	}
-	
+
 	public static List<Product> queryCart(Connection conn, String userName) throws SQLException {
 		String sql = "Select cart_item from cart where cart_user='" + userName + "'";
-		
+
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		
+
 		ResultSet rs = pstm.executeQuery();
 		List<Product> list = new ArrayList<Product>();
-		while(rs.next()) {
+		while (rs.next()) {
 			Product product;
 			product = findProduct(conn, rs.getString("cart_item"));
 			list.add(product);
 		}
-		
+
 		return list;
 	}
-	
+
 	public static void insertCart(Connection conn, String userName, String code) throws SQLException {
 		String sql = "select * from cart where cart_user=? and cart_item=?";
-		
+
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, userName);
 		pstm.setString(2, code);
-		
+
 		ResultSet rs = pstm.executeQuery();
-		
-		if(!rs.next()) {
+
+		if (!rs.next()) {
 			sql = "Insert into cart(cart_user, cart_item) values (?,?)";
 
 			pstm = conn.prepareStatement(sql);
@@ -112,7 +115,7 @@ public class DBUtils {
 			pstm.executeUpdate();
 		}
 	}
-	
+
 	public static void deleteCart(Connection conn, String userName, String code) throws SQLException {
 		String sql = "Delete From cart where cart_user= ? and cart_item= ?";
 
@@ -174,4 +177,17 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
+	public static void addUserAccount(Connection conn, UserAccount user) throws SQLException {
+		String sql = "INSERT INTO user_account(user_id, user_major, user_name, user_email, user_password) VALUES(?,?,?,?,?)";
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		
+		pstm.setString(1, user.getId());
+		pstm.setString(2, user.getMajor());
+		pstm.setString(3, user.getUserName());
+		pstm.setString(4, user.getEmail());
+		pstm.setString(5, user.getPassword());
+		
+		pstm.executeUpdate();
+	}
 }
