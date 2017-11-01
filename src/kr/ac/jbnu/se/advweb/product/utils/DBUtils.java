@@ -11,27 +11,33 @@ import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
 public class DBUtils {
-	
-//  Difference Between executeQuery() Vs executeUpdate() Vs execute() In JDBC	
-//	http://javaconceptoftheday.com/difference-between-executequery-executeupdate-execute-in-jdbc/
+
+	// Difference Between executeQuery() Vs executeUpdate() Vs execute() In JDBC
+	// http://javaconceptoftheday.com/difference-between-executequery-executeupdate-execute-in-jdbc/
 
 	public static UserAccount findUser(Connection conn, //
-			String userName, String password) throws SQLException {
+			String userEmail, String password) throws SQLException {
 
-		String sql = "Select a.User_Name, a.Password, a.Gender from User_Account a " //
-				+ " where a.User_Name = ? and a.password= ?";
+		String sql = "Select * from user_account a where a.user_email = ? and a.user_password = ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, userName);
+		pstm.setString(1, userEmail);
 		pstm.setString(2, password);
 		ResultSet rs = pstm.executeQuery();
 
 		if (rs.next()) {
-			String gender = rs.getString("Gender");
+			// String gender = rs.getString("Gender");
+			String id = rs.getString("user_id");
+			String major = rs.getString("user_major");
+			String name = rs.getString("user_name");
+			
 			UserAccount user = new UserAccount();
-			user.setUserName(userName);
+			user.setId(id);
+			user.setMajor(major);
+			user.setUserName(name);
+			user.setEmail(userEmail);
 			user.setPassword(password);
-			user.setGender(gender);
+			// user.setGender(gender);
 			return user;
 		}
 		return null;
@@ -39,8 +45,7 @@ public class DBUtils {
 
 	public static UserAccount findUser(Connection conn, String userName) throws SQLException {
 
-		String sql = "Select a.User_Name, a.Password, a.Gender from User_Account a "//
-				+ " where a.User_Name = ? ";
+		String sql = "Select * from user_account a where a.user_name = ? ";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, userName);
@@ -48,12 +53,20 @@ public class DBUtils {
 		ResultSet rs = pstm.executeQuery();
 
 		if (rs.next()) {
-			String password = rs.getString("Password");
-			String gender = rs.getString("Gender");
+			String id = rs.getString("user_id");
+			String major = rs.getString("user_major");
+			String name = rs.getString("user_name");
+			String password = rs.getString("user_password");
+			String email = rs.getString("user_email");
+//			String gender = rs.getString("Gender");
+			
 			UserAccount user = new UserAccount();
+			user.setId(id);
+			user.setMajor(major);
 			user.setUserName(userName);
 			user.setPassword(password);
-			user.setGender(gender);
+			user.setEmail(email);
+//			user.setGender(gender);
 			return user;
 		}
 		return null;
@@ -179,15 +192,15 @@ public class DBUtils {
 
 	public static void addUserAccount(Connection conn, UserAccount user) throws SQLException {
 		String sql = "INSERT INTO user_account(user_id, user_major, user_name, user_email, user_password) VALUES(?,?,?,?,?)";
-		
+
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		
+
 		pstm.setString(1, user.getId());
 		pstm.setString(2, user.getMajor());
 		pstm.setString(3, user.getUserName());
 		pstm.setString(4, user.getEmail());
 		pstm.setString(5, user.getPassword());
-		
+
 		pstm.executeUpdate();
 	}
 }
