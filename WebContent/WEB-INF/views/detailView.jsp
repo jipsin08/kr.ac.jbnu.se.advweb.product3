@@ -46,6 +46,8 @@
 <body>
 	<jsp:include page="_top.jsp"></jsp:include>
     <jsp:include page="_navbar.jsp"></jsp:include>
+    <jsp:include page="recentProduct.jsp"></jsp:include>
+    
 
     <div id="all">
 
@@ -535,6 +537,27 @@
     	    	data: {product : "${product.code}"}
     	    });
     	});
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        if(!!$.cookie("recentProduct")) {
+            var products = $.parseJSON($.cookie("recentProduct"));
+            if(product.length >= 3) {
+                products.sort().reverse();
+                products.pop();
+                products.sort().reverse();
+            }
+            products.push(
+                    { "name" : "${product.name}", "code" : "${product.code}"}
+            );
+            $.cookie("recentProduct", JSON.stringify(product));
+        } else {
+            var products = [
+                 {"name" : "${product.name}", "code" : "${product.code}"}
+             ];
+             $.cookie("recentProduct", JSON.stringify(products));
+        }    
     });
 	</script>
     <script src="resources/js/bootstrap.min.js"></script>

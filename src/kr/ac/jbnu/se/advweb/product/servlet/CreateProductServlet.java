@@ -43,12 +43,17 @@ public class CreateProductServlet extends HttpServlet {
 		String code = (String) request.getParameter("code");
 		String name = (String) request.getParameter("name");
 		String priceStr = (String) request.getParameter("price");
+		String brand = (String) request.getParameter("brand");
+		String cpu = (String) request.getParameter("cpu");
+		String graphicCard = (String) request.getParameter("graphicCard");
+//		String image = (String) request.getParameter("image");
+		
 		float price = 0;
 		try {
 			price = Float.parseFloat(priceStr);
 		} catch (Exception e) {
 		}
-		Product product = new Product(code, name, price);
+		Product product = new Product(code, name, price, brand, cpu, graphicCard);
 
 		String errorString = null;
 
