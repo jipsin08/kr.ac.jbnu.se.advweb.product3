@@ -45,6 +45,8 @@
 <body>
 	<jsp:include page="_top.jsp"></jsp:include>
     <jsp:include page="_navbar.jsp"></jsp:include>
+    <jsp:include page="recentProduct.jsp"></jsp:include>
+
 
     <div id="all">
 
