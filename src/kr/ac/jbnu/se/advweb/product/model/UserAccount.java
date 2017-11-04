@@ -12,8 +12,8 @@ public class UserAccount {
 	private String id;
 	private String Major;
 	private String email;
+	private boolean isAdmin;
 	
-
 	public UserAccount() {
 
 	}
@@ -64,5 +64,13 @@ public class UserAccount {
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 }

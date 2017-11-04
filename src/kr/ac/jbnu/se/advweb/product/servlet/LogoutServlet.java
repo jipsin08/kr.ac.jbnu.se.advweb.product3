@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
+
 /**
  * Servlet implementation class LogoutServlet
  */
@@ -32,6 +34,7 @@ public class LogoutServlet extends HttpServlet {
 		System.out.println("로그아웃!");
 		HttpSession session = request.getSession();
 		session.invalidate();
+		MyUtils.deleteUserCookie(response);
 	}
 
 	/**

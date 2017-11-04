@@ -67,8 +67,9 @@ public class LoginServlet extends HttpServlet {
 //		notFoundHandler(response);
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		boolean remember = Boolean.parseBoolean(request.getParameter("rememberMe"));
-
+		String rememberMeStr = request.getParameter("rememberMe");
+		boolean remember = "Y".equals(rememberMeStr);
+		
 		UserAccount user = null;
 		boolean hasError = false;
 		String errorString = null;
@@ -126,13 +127,20 @@ public class LoginServlet extends HttpServlet {
 			else {
 				MyUtils.deleteUserCookie(response);
 			}
+			
+			if(user.isAdmin()) {
+//				response.sendRedirect(request.getContextPath() + "/user_register");
+				//가고싶은 페이지로 Redirect 하면 됨
+				return;
+			} else {
+				response.sendRedirect(request.getContextPath() + "/home");
+				return;
+			}
 
 			// Redirect to userInfo page.
-			response.sendRedirect(request.getContextPath() + "/home");
 //			RequestDispatcher dispatcher 
 //			= this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
 ////
-			return;
 		}
 	}
 

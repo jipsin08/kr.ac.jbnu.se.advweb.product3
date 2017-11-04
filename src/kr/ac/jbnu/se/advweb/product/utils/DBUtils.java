@@ -30,6 +30,7 @@ public class DBUtils {
 			String id = rs.getString("user_id");
 			String major = rs.getString("user_major");
 			String name = rs.getString("user_name");
+			boolean isAdmin = rs.getString("Is_Admin").equals("Y");
 			
 			UserAccount user = new UserAccount();
 			user.setId(id);
@@ -37,6 +38,7 @@ public class DBUtils {
 			user.setUserName(name);
 			user.setEmail(userEmail);
 			user.setPassword(password);
+			user.setAdmin(isAdmin);
 			// user.setGender(gender);
 			return user;
 		}
