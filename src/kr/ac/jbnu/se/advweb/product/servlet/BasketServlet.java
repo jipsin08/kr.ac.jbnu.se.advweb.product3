@@ -41,7 +41,7 @@ public class BasketServlet extends HttpServlet {
 		String errorString = null;
 		List<Product> list = null;
 		try {
-			list = DBUtils.queryCart(conn, "tom");
+			list = DBUtils.queryCart(conn, "201215466");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();

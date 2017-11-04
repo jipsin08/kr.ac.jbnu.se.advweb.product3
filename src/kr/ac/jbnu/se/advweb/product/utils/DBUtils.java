@@ -92,8 +92,8 @@ public class DBUtils {
 		return list;
 	}
 
-	public static List<Product> queryCart(Connection conn, String userName) throws SQLException {
-		String sql = "Select cart_item from cart where cart_user='" + userName + "'";
+	public static List<Product> queryCart(Connection conn, String userid) throws SQLException {
+		String sql = "Select cart_item from cart where cart_user='" + userid + "'";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -108,11 +108,11 @@ public class DBUtils {
 		return list;
 	}
 
-	public static void insertCart(Connection conn, String userName, String code) throws SQLException {
+	public static void insertCart(Connection conn, String userid, String code) throws SQLException {
 		String sql = "select * from cart where cart_user=? and cart_item=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, userName);
+		pstm.setString(1, userid);
 		pstm.setString(2, code);
 
 		ResultSet rs = pstm.executeQuery();
@@ -122,7 +122,7 @@ public class DBUtils {
 
 			pstm = conn.prepareStatement(sql);
 
-			pstm.setString(1, userName);
+			pstm.setString(1, userid);
 			pstm.setString(2, code);
 
 			pstm.executeUpdate();

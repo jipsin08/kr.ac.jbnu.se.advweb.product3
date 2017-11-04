@@ -66,7 +66,7 @@ public class ProductDetailServlet extends HttpServlet {
 		String errorString = null;
 		List<Product> list = null;
 		try {
-			DBUtils.insertCart(conn, "tom", productCode);
+			DBUtils.insertCart(conn, "201215466", productCode);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();

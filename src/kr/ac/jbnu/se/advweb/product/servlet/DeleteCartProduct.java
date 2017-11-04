@@ -40,7 +40,7 @@ public class DeleteCartProduct extends HttpServlet {
 		
 		String errorString = null;
 		try {
-			DBUtils.deleteCart(conn, "tom", productCode);
+			DBUtils.deleteCart(conn, "201215466", productCode);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
