@@ -220,7 +220,7 @@
                     <div class="row" id="productMain">
                         <div class="col-sm-6">
                             <div id="mainImage">
-                                <img src="resources/img/detailbig1.jpg" alt="" class="img-responsive">
+                                <img src="${product.image}" alt="" class="img-responsive">
                             </div>
 
                             <div class="ribbon sale">
@@ -250,23 +250,23 @@
 
                             </div>
 
-                            <div class="row" id="thumbs">
-                                <div class="col-xs-4">
-                                    <a href="resources/img/detailbig1.jpg" class="thumb">
-                                        <img src="resources/img/detailsquare.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="resources/img/detailbig2.jpg" class="thumb">
-                                        <img src="resources/img/detailsquare2.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="resources/img/detailbig3.jpg" class="thumb">
-                                        <img src="resources/img/detailsquare3.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                            </div>
+<!--                             <div class="row" id="thumbs"> -->
+<!--                                 <div class="col-xs-4"> -->
+<!--                                     <a href="resources/img/detailbig1.jpg" class="thumb"> -->
+<!--                                         <img src="resources/img/detailsquare.jpg" alt="" class="img-responsive"> -->
+<!--                                     </a> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-xs-4"> -->
+<!--                                     <a href="resources/img/detailbig2.jpg" class="thumb"> -->
+<!--                                         <img src="resources/img/detailsquare2.jpg" alt="" class="img-responsive"> -->
+<!--                                     </a> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-xs-4"> -->
+<!--                                     <a href="resources/img/detailbig3.jpg" class="thumb"> -->
+<!--                                         <img src="resources/img/detailsquare3.jpg" alt="" class="img-responsive"> -->
+<!--                                     </a> -->
+<!--                                 </div> -->
+<!--                             </div> -->
                         </div>
 
                     </div>
@@ -295,22 +295,22 @@
                     <div class="box" id="details">
                         <p>
                             <h4>Product details</h4>
-                            <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
-                            <h4>Material & care</h4>
-                            <ul>
-                                <li>Polyester</li>
-                                <li>Machine wash</li>
-                            </ul>
-                            <h4>Size & Fit</h4>
-                            <ul>
-                                <li>Regular fit</li>
-                                <li>The model (height 5'8" and chest 33") is wearing a size S</li>
-                            </ul>
+                            <p>${product.description}</p>
+<!--                             <h4>Material & care</h4> -->
+<!--                             <ul> -->
+<!--                                 <li>Polyester</li> -->
+<!--                                 <li>Machine wash</li> -->
+<!--                             </ul> -->
+<!--                             <h4>Size & Fit</h4> -->
+<!--                             <ul> -->
+<!--                                 <li>Regular fit</li> -->
+<!--                                 <li>The model (height 5'8" and chest 33") is wearing a size S</li> -->
+<!--                             </ul> -->
 
-                            <blockquote>
-                                <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
-                                </p>
-                            </blockquote>
+<!--                             <blockquote> -->
+<!--                                 <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em> -->
+<!--                                 </p> -->
+<!--                             </blockquote> -->
 
                             <hr>
                     </div>
@@ -545,27 +545,6 @@
     	}
     });
     </script>
-    <script>
-    $(document).ready(function() {
-        if(!!$.cookie("recentProduct")) {
-            var products = $.parseJSON($.cookie("recentProduct"));
-            if(product.length >= 3) {
-                products.sort().reverse();
-                products.pop();
-                products.sort().reverse();
-            }
-            products.push(
-                    { "name" : "${product.name}", "code" : "${product.code}"}
-            );
-            $.cookie("recentProduct", JSON.stringify(product));
-        } else {
-            var products = [
-                 {"name" : "${product.name}", "code" : "${product.code}"}
-             ];
-             $.cookie("recentProduct", JSON.stringify(products));
-        }    
-    });
-	</script>
 	<script>
 	$(document).ready(function() {
 		if(!!$.cookie("recentProduct")) {
@@ -576,12 +555,12 @@
 				products.sort().reverse();
 			}
 			products.push(
-				    { "name" : "${product.name}", "code" : "${product.code}"}
+				    { "name" : "${product.name}", "image" : "${product.image}", "code" : "${product.code}" }
 			);
 			$.cookie("recentProduct", JSON.stringify(products));
 		} else {
 			var products = [
-	 			{"name" : "${product.name}", "code" : "${product.code}"}
+	 			{"name" : "${product.name}", "image" : "${product.image}", "code" : "${product.code}"}
 	 		];
 	     	$.cookie("recentProduct", JSON.stringify(products));
 		}	

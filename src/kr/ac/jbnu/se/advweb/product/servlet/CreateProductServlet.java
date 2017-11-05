@@ -36,7 +36,7 @@ public class CreateProductServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		RequestDispatcher dispatcher = request.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
 		dispatcher.forward(request, response);
@@ -71,7 +71,9 @@ public class CreateProductServlet extends HttpServlet {
 					if (!item.isFormField()) {
 						String name = new File(item.getName()).getName();
 						item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-						image = UPLOAD_DIRECTORY + File.separator + name;
+//						image = UPLOAD_DIRECTORY + File.separator + name;
+						image = "resources/img/" + name;
+//						System.out.println(image);
 					} else {
 						String fieldName = item.getFieldName();
 						String fieldValue = item.getString();

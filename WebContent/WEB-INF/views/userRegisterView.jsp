@@ -243,8 +243,8 @@
 					email : $("#email").val(),
 					password : $("#password").val(),
 				}, function(data, status, jqXHR) {
-				// 			        alert( "\nStatus: " + status);
-				// 			        alert( "\nStatus: " + jqXHR.status);
+// 							        alert( "\nStatus: " + status);
+// 							        alert( "\nStatus: " + jqXHR.status);
 				}).done(function() {
 					alert("성공!");
 					window.location.replace("${pageContext.request.contextPath}/home");

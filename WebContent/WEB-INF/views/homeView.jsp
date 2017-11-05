@@ -45,9 +45,7 @@
     <jsp:include page="_navbar.jsp"></jsp:include>
     <jsp:include page="recentProduct.jsp"></jsp:include>
     <div id="all">
-
         <div id="content">
-
             <div class="container">
                 <div class="col-md-12">
                     <div id="main-slider">
@@ -135,18 +133,18 @@
 	                                    <div class="flipper">
 	                                        <div class="front">
 	                                            <a href="${pageContext.request.contextPath}/detail?product=${product.code}">
-	                                                <img src="resources/img/product1.jpg" alt="" class="img-responsive">
+	                                                <img src="${product.image}" alt="" class="img-responsive">
 	                                            </a>
 	                                        </div>
 	                                        <div class="back">
 	                                            <a href="${pageContext.request.contextPath}/detail?product=${product.code}">
-	                                                <img src="resources/img/product1_2.jpg" alt="" class="img-responsive">
+	                                                <img src="${product.image}" alt="" class="img-responsive">
 	                                            </a>
 	                                        </div>
 	                                    </div>
 	                                </div>
 	                                <a href="${pageContext.request.contextPath}/detail?product=${product.code}" class="invisible">
-	                                    <img src="resources/img/product1.jpg" alt="" class="img-responsive">
+	                                    <img src="${product.image}" alt="" class="img-responsive">
 	                                </a>
 	                                <div class="text">
 	                                    <h3><a href="${pageContext.request.contextPath}/detail?product=${product.code}">${product.name}</a></h3>

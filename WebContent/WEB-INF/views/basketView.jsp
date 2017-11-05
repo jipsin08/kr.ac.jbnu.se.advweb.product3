@@ -86,11 +86,11 @@
                                     		<tr>
                                     			<td/><td/><td/>
                                     			<td>
-                                    				<a href="#">
-                                                    	<img src="resources/img/detailsquare.jpg" alt="White Blouse Armani">
+                                    				<a href="detail?product=${product.code}">
+                                                    	<img src="${product.image}" alt="White Blouse Armani">
                                                		</a>
                                                	</td>
-                                               	<td><a href="#">${product.name}</a>
+                                               	<td><a href="detail?product=${product.code}">${product.name}</a>
                                                	</td>
                                                	<td>${product.price}</td>
 <!--                                                	<td>$0.00</td> -->

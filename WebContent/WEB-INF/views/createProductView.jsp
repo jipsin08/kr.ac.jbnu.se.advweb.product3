@@ -24,9 +24,7 @@
 <link href="resources/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
 <!-- your stylesheet with modifications -->
 <link href="resources/css/custom.css" rel="stylesheet">
-
 <link rel="shortcut icon" href="favicon.png">
-
 
 </head>
 <body>
@@ -43,7 +41,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="box">
-					<h1>상품등록</h1>
+					<h1>상품 등록</h1>
 					<p class="lead">
 						팔고 싶은 노트북을 등록해보세요!
 					</p>
@@ -54,34 +52,6 @@
 						 If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.
 					</p>
 					<hr>
-<!-- 					<form action="createProduct" id="form_createProduct"> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="name">이름</label><input type="text" class="form-control" id="name"> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="price">가격</label><input type="text" class="form-control" id="price"> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="brand">브랜드</label><input type="text" class="form-control" id="brand"> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="cpu">CPU</label><input type="text" class="form-control" id="cpu"> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="graphic-card">그래픽카드</label><input type="text" class="form-control" id="graphic-card"> -->
-							
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 						<label for="image">이미지</label> -->
-	
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="description">상세 설명</label><input type="text" class="form-control" id="description"> -->
-<!-- 						</div> -->
-<!-- 						<div class="text-center"> -->
-<!-- 							<input type="submit" class="btn btn-primary" value="상품등록"> -->
-<!-- 						</div> -->
-<!-- 					</form> -->
 					
 					<form action="createProduct" enctype="multipart/form-data" method="post">
 						<div class="form-group">
@@ -118,12 +88,6 @@
 							<input type="submit" class="btn btn-primary" value="상품등록">
 						</div>
 					</form>
-					
-<!-- 					<form id="image" action="UploadFile" enctype="multipart/form-data" method="post"> -->
-<!--   							<input type="file" name="file" id="imgInp" /> -->
-<!--   							<input type="submit" value="업로드"/> -->
-<!--   							<img id="blah" src="#" alt="미리보기" style="width:500px;height:300px"/> -->
-<!-- 					</form> -->
 				</div>
 			</div>
 		</div>
@@ -161,15 +125,15 @@ $(document)
 //                     image: $("#image").val()
 //                 }, function(data) {
 //                     // move another page
-// //                     var win = window.open();
-// //                     win.document.write(data);
+//                     var win = window.open();
+//                     win.document.write(data);
 // 						alert(data);
 //                 })
 //                     .done(
 //                                                         function() {
 //                                                             alert("성공!");
-// //                                                             window.location
-// //                                                                 .replace("${pageContext.request.contextPath}/home");
+//                                                             window.location
+//                                                                 .replace("${pageContext.request.contextPath}/home");
 //                                                         })
 //                                                     .fail(
 //                                                         function(jqXHR) {
@@ -182,20 +146,16 @@ $(document)
 //                                                         });
 //         });
         function readURL(input) {
-
         	  if (input.files && input.files[0]) {
         	    var reader = new FileReader();
-
         	    reader.onload = function(e) {
         	      $('#blah').attr('src', e.target.result);
         	    }
-
         	    reader.readAsDataURL(input.files[0]);
         	  }
-        	}
-
+        }
         	$("#imgInp").change(function() {
-        	  readURL(this);
+        	readURL(this);
         	});
     }); 
 </script>

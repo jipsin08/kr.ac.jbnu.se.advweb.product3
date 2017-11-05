@@ -207,6 +207,7 @@ public class DBUtils {
 		pstm.setString(1, userid);
 		pstm.setString(2, code);
 
+		System.out.println(code);
 		ResultSet rs = pstm.executeQuery();
 
 		if (!rs.next()) {
@@ -233,7 +234,7 @@ public class DBUtils {
 	}
 
 	public static Product findProduct(Connection conn, String code) throws SQLException {
-		String sql = "Select a.Code, a.Name, a.Price, a.Brand, a.CPU, a.GraphicCard, a.Description from Product a where a.Code=?";
+		String sql = "Select a.Code, a.Name, a.Price, a.Brand, a.CPU, a.GraphicCard, a.Description, a.Image from Product a where a.Code=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, code);
@@ -247,7 +248,8 @@ public class DBUtils {
 			String cpu = rs.getString("CPU");
 			String graphicCard = rs.getString("GraphicCard");
 			String description = rs.getString("Description");
-			Product product = new Product(code, name, price, brand, cpu, graphicCard, description);
+			String image = rs.getString("Image");
+			Product product = new Product(code, name, price, brand, cpu, graphicCard, description, image);
 			return product;
 		}
 		return null;
