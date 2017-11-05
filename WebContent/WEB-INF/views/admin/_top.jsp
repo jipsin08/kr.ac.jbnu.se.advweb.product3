@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+	
 <script type="text/javascript">
 	$(document).ready(function() {
 		//로그인 여부에 따라서 보이는 메뉴 다르게 표시
@@ -17,20 +19,20 @@
 			}
 		});
 		
-		
-// 		//로그인 모달창에서 로그인 버튼 눌러서 로그인 요청
-// 		$("#btn-login").on('click', function() {
-// 			alert($("rememberMe-id").val());
-// 	    		$.post('${pageContext.request.contextPath}/login', {
-// 					email : $("#email-modal").val(),
-// 					password : $("#password-modal").val(),
-// 					rememberMe : $("#rememberMe-id").is(":checked"),
-// 				}, function(data, status, jqXHR){
-					
+		//로그인 모달창에서 로그인 버튼 눌러서 로그인 요청
+		$("#btn-login").click(function() {
+	    		$.post('${pageContext.request.contextPath}/login', {
+					email : $("#email-modal").val(),
+					password : $("#password-modal").val(),
+					rememberMe : $("#rememberMe-id").is(":checked"),
+				});
+		});		
+// 	    		, function(data, status, jqXHR){
+// // 			        alert( "\nStatus: " + status);
+// // 			        alert( "\nStatus: " + jqXHR.status);
 // 			    })
 // 			    .done(function(data, status, jqXHR) {
-// 			        console.log('responseURL:', xhr.responseURL, 'responseText:', responseText);
-// // 					window.location.replace("${pageContext.request.contextPath}/home");
+//  					window.location.replace("${pageContext.request.contextPath}/admin_home");
 // 				})
 // 				.fail(function(jqXHR) {
 // 					alert("실패!");
@@ -40,32 +42,17 @@
 // // 					alert("항상!");
 // 				});
 // 			});
-			
-		$("#login_form_id").on('submit', function (e) {
-			$.post('${pageContext.request.contextPath}/login', 
-				{
-					userName : $("#name_id").val(),
-					password : $("#passwd_id").val(),
-					rememberMe: $("#rememberMe_id").val()
-				},function(data) 
-					{
-						// move another page
-						var win = window.open();
-						win.document.write(data);
-					}
-			);
-		});
 
 		//로그아웃
 		$('ul.menu li').click(function(e) {
-			if ($(this).text() == '로그아웃') {
+			if ($(this).text() == 'Logout') {
 				$.get('${pageContext.request.contextPath}/logout', function() {
 					alert('로그아웃 되었습니다.');
 					window.location.replace("${pageContext.request.contextPath}/home");
 				});
 			}
 		});
-	});
+	})
 </script>
 
 <div id="top">
@@ -76,9 +63,10 @@
 		</div>
 		<div class="col-md-6" data-animate="fadeInDown">
 			<ul class="menu">
-				<li class="hidden" id="li-login"><a href="#" data-toggle="modal" data-target="#login-modal">로그인</a></li>
-				<li class="hidden" id="li-register"><a href="user_register">회원가입</a></li>
-				<li class="hidden" id="li-logout"><a href="#">로그아웃</a></li>
+				<li class="hidden" id="li-login"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+				<li class="hidden" id="li-register"><a href="user_register">Register</a></li>
+				<li class="hidden" id="li-logout"><a href="#">Logout</a></li>
+				<li class="hidden" id="li-MyPage"><a href=user_manage>My Page</a></li>
 				<li><a href="contact.html">Contact</a></li>
 				<li><a href="#">Recently viewed</a></li>
 			</ul>
@@ -95,7 +83,7 @@
 					<h4 class="modal-title" id="Login">Customer login</h4>
 				</div>
 				<div class="modal-body">
-					<form id="login_form_id" action="login" method="POST">
+<!-- 					<form id="login_form_id" action="home" method="POST"> -->
 						<div class="form-group">
 							<input type="text" class="form-control" id="email-modal"
 								name="email" placeholder="email" value="" />
@@ -110,11 +98,11 @@
 								value="Y" /> Remember me?
 						</p>
 						<p class="text-center">
-							<button id="btn-login" class="btn btn-primary" type="submit">
+							<button id="btn-login" class="btn btn-primary">
 								<i class="fa fa-sign-in"></i> Log in
 							</button>
 						</p>
-					</form>
+<!-- 					</form> -->
 
 					<p class="text-center text-muted">Not registered yet?</p>
 					<p class="text-center text-muted">

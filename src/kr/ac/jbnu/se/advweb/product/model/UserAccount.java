@@ -12,9 +12,9 @@ public class UserAccount {
 	private String id;		//student number
 	private String major;
 	private String email;
-	private String isAdmin;
-	
 
+	private boolean isAdmin;
+	
 	public UserAccount() {
 
 	}
@@ -67,11 +67,11 @@ public class UserAccount {
 		this.email = email;
 	}
 
-	public String getIsAdmin() {
+	public boolean isAdmin() {
 		return isAdmin;
 	}
 
-	public void setIsAdmin(String isAdmin) {
+	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 }
