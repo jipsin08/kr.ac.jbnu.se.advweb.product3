@@ -48,8 +48,18 @@ public class UserRegisterServlet extends HttpServlet {
 		if (id.equals("") || name.equals("") || major.equals("") || email.equals("") || password.equals("")) {
 			errorString = "회원 가입 요청 중 누락된 정보가 있습니다.";
 		}
-		
 		UserAccount user = new UserAccount();
+//-----------------------		
+		try {
+			user = DBUtils.findBlockedUser(conn, email);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println(user.getBlocked());
+		if (user.getBlocked() != null) {
+			errorString = "당신의 계정은 정지당했습니다.";
+		}
+//--------------------------------		
 		user.setId(id);
 		user.setUserName(name);
 		user.setMajor(major);
@@ -64,6 +74,7 @@ public class UserRegisterServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 
 }

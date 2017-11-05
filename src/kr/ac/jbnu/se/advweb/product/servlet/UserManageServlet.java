@@ -49,7 +49,7 @@ public class UserManageServlet extends HttpServlet {
 		
 		// Forward to /WEB-INF/views/productListView.jsp
 		RequestDispatcher dispatcher = request.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/userManageView.jsp");
+				.getRequestDispatcher("/WEB-INF/views/admin/userManageView.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -52,7 +52,7 @@ public class DBUtils {
 		}
 		return null;
 	}
-
+	
 	public static UserAccount findUser(Connection conn, String userName) throws SQLException {
 
 		String sql = "Select * from user_account a where a.user_name = ? ";
@@ -81,7 +81,48 @@ public class DBUtils {
 		}
 		return null;
 	}
+	
+	public static UserAccount findBlockedUser(Connection conn, //
+			String userEmail) throws SQLException {
 
+		String sql = "Select * from user_account a where a.user_email = ?";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, userEmail);
+		ResultSet rs = pstm.executeQuery();
+
+		if (rs.next()) {
+			String isBlocked = rs.getString("Is_Blocked");
+			
+			UserAccount user = new UserAccount();
+			user.setBlocked(isBlocked);
+			
+			return user;
+		}
+		return null;
+	}
+
+	public static void blockUserAccount(Connection conn, //
+			String userId) throws SQLException {
+
+		String sql = "Select * from user_account a where a.user_email = ?";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, userId);
+		ResultSet rs = pstm.executeQuery();
+
+		if (rs.next()) {
+			String isBlocked = rs.getString("Is_Blocked");
+			
+			if(isBlocked == null) {
+				isBlocked = "Y";
+			}
+			UserAccount user = new UserAccount();
+			user.setBlocked(isBlocked);
+		}
+		//return null;
+	}
+	
 	public static List<Board> queryBoard(Connection conn) throws SQLException {
 		String sql = "Select * from board";
 
@@ -378,11 +419,14 @@ public class DBUtils {
 			String major = rs.getString("user_major");
 			String name = rs.getString("user_name");
 			String email = rs.getString("user_email");
+			String isBlocked = rs.getString("Is_Blocked");
+
 			UserAccount user = new UserAccount();
 			user.setId(id);
 			user.setMajor(major);
 			user.setUserName(name);
 			user.setEmail(email);
+			user.setBlocked(isBlocked);
 			list.add(user);
 		}
 		return list;
