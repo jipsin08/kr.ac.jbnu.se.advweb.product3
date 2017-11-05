@@ -79,22 +79,22 @@ public class CreateProductServlet extends HttpServlet {
 						String fieldValue = item.getString();
 
 						if (fieldName.equals("name")) {
-							p_name = fieldValue;
+							p_name = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
 						}
 						else if (fieldName.equals("price")) {
-							price = fieldValue;
+							price = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
 						}
 						else if (fieldName.equals("brand")) {	
-							brand = fieldValue;
+							brand = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
 						}
 						else if (fieldName.equals("cpu")) {
-							cpu = fieldValue;
+							cpu = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
 						}
 						else if (fieldName.equals("graphiccard")) {
-							graphicCard = fieldValue;
+							graphicCard = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
 						}
 						else if (fieldName.equals("description")) {
-							description = fieldValue;
+							description = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
 						}
 					}
 				}

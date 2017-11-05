@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +54,7 @@
 					</p>
 					<hr>
 					
-					<form action="createProduct" enctype="multipart/form-data" method="post">
+					<form action="createProduct" enctype="multipart/form-data" method="post" accept-charset="UTF-8">
 						<div class="form-group">
 							<label for="name">이름</label>
 							<input type="text" name="name" class="form-control" id="name">
