@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@
 
 
 	<div id="all">
-
+	
 		<div id="content">
 			<div class="container">
 
@@ -49,16 +49,83 @@
 						<li><a href="board">글 목록 보기</a></li>
 					</ul>
 
-					<div class="row" id="error-page">
+<!-- 					<div class="row" id="error-page"> -->
 						<div class="col-md-12">
-							<div class="box">
+							<div class="box" style="margin-bottom: 20px">
 								<p>${board.contents}</p>
+							</div>
+
+							<div class="box" style="margin-bottom: 20px">
+								<div id="comment-form" data-animate="fadeInUp">
+									<form>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<textarea class="form-control" id="comment" rows="2" placeholder="댓글을 입력해주세요."></textarea>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-sm-12 text-right">
+												<button class="btn btn-primary">
+													<i class="fa fa-comment-o"></i> 댓글 남기기
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<!-- /#comment-form -->
+
+							</div>
+							<div class="box">
+								<div id="comments" data-animate="fadeInUp">
+									<h4>2개의 댓글이 있습니다.</h4>
+
+									<div class="row comment">
+										<div class="col-sm-3 col-md-2 text-center-xs">
+											<p>
+												<!--                                         <img src="img/blog-avatar2.jpg" class="img-responsive img-circle" alt=""> -->
+											</p>
+										</div>
+										<div class="col-sm-9 col-md-10">
+											<h5>Julie Alma</h5>
+											<p class="posted">
+												<i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am
+											</p>
+											<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+										</div>
+									</div>
+									<!-- /.comment -->
+
+
+									<div class="row comment last">
+
+										<div class="col-sm-3 col-md-2 text-center-xs">
+											<p>
+												<!--                                         <img src="img/blog-avatar.jpg" class="img-responsive img-circle" alt=""> -->
+											</p>
+										</div>
+
+										<div class="col-sm-9 col-md-10">
+											<h5>Louise Armero</h5>
+											<p class="posted">
+												<i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am
+											</p>
+											<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+										</div>
+
+									</div>
+									<!-- /.comment -->
+
+								</div>
+								<!-- /#comments -->
+
 							</div>
 						</div>
 					</div>
 
-
-				</div>
+<!-- 				</div> -->
 				<!-- /.col-md-9 -->
 			</div>
 			<!-- /.container -->
@@ -213,6 +280,6 @@
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/front.js"></script>
 	<script src="resources/js/respond.min.js"></script>
-
+	
 </body>
 </html>
