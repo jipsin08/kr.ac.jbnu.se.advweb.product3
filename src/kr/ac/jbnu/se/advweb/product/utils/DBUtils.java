@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.ac.jbnu.se.advweb.product.model.Board;
+import kr.ac.jbnu.se.advweb.product.model.Comment;
 import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
@@ -67,20 +68,20 @@ public class DBUtils {
 			String name = rs.getString("user_name");
 			String password = rs.getString("user_password");
 			String email = rs.getString("user_email");
-//			String gender = rs.getString("Gender");
-			
+			// String gender = rs.getString("Gender");
+
 			UserAccount user = new UserAccount();
 			user.setId(id);
 			user.setMajor(major);
 			user.setUserName(userName);
 			user.setPassword(password);
 			user.setEmail(email);
-//			user.setGender(gender);
+			// user.setGender(gender);
 			return user;
 		}
 		return null;
 	}
-	
+
 	public static List<Board> queryBoard(Connection conn) throws SQLException {
 		String sql = "Select * from board";
 
@@ -88,15 +89,15 @@ public class DBUtils {
 
 		ResultSet rs = pstm.executeQuery();
 		List<Board> list = new ArrayList<Board>();
-		
+
 		while (rs.next()) {
-			String id = rs.getString("board_id"); 
+			String id = rs.getString("board_id");
 			String title = rs.getString("board_title");
 			String author = rs.getString("board_author");
 			String date = rs.getString("board_date");
 			String hits = rs.getString("board_hits");
 			String contents = rs.getString("board_contents");
-			
+
 			Board board = new Board();
 			board.setId(id);
 			board.setTitle(title);
@@ -104,12 +105,12 @@ public class DBUtils {
 			board.setDate(date);
 			board.setHits(hits);
 			board.setContents(contents);
-			
+
 			list.add(board);
 		}
 		return list;
 	}
-	
+
 	public static Board findBoardById(Connection conn, String board_id) throws SQLException {
 		String sql = "Select * from board where board_id=?";
 
@@ -118,39 +119,81 @@ public class DBUtils {
 
 		ResultSet rs = pstm.executeQuery();
 		Board board = new Board();
-		
+
 		while (rs.next()) {
-			String id = rs.getString("board_id"); 
+			String id = rs.getString("board_id");
 			String title = rs.getString("board_title");
 			String author = rs.getString("board_author");
 			String date = rs.getString("board_date");
 			String hits = rs.getString("board_hits");
 			String contents = rs.getString("board_contents");
-			
+
 			board.setId(id);
 			board.setTitle(title);
 			board.setAuthor(author);
 			board.setDate(date);
 			board.setHits(hits);
 			board.setContents(contents);
-			
-			//1개만..
+
+			// 1개만..
 			break;
 		}
 		return board;
 	}
-	
+
 	public static void updateBoardHits(Connection conn, Board board) throws SQLException {
 		String sql = "Update board set board_hits=? where board_id=? ";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		int hit = Integer.parseInt(board.getHits()) + 1;
-		
+
 		pstm.setString(1, String.valueOf(hit));
 		pstm.setString(2, board.getId());
 		pstm.executeUpdate();
 	}
 
+	public static List<Comment> findCommentById(Connection conn, String board_id) throws SQLException {
+		String sql = "Select * from comment where board_id=?";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, board_id);
+
+		ResultSet rs = pstm.executeQuery();
+		List<Comment> list = new ArrayList<>();
+
+		while (rs.next()) {
+			String id = rs.getString("comment_id");
+			String author = rs.getString("comment_author");
+			String date = rs.getString("comment_date");
+			String contents = rs.getString("comment_contents");
+			String boardId = rs.getString("board_id");
+
+			Comment comment = new Comment();
+			comment.setId(id);
+			comment.setAuthor(author);
+			comment.setDate(date);
+			comment.setContents(contents);
+			comment.setBoard_id(boardId);
+
+			list.add(comment);
+		}
+
+		return list;
+	}
+
+	public static void addComment(Connection conn, Comment comment) throws SQLException {
+		String sql = "INSERT INTO comment(comment_author, comment_date, comment_contents, board_id)"
+				+ "VALUES (?,?,?,?)";
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, comment.getAuthor());
+		pstm.setString(2, comment.getDate());
+		pstm.setString(3, comment.getContents());
+		pstm.setString(4, comment.getBoard_id());
+
+		pstm.executeUpdate();
+	}
 
 	public static List<Product> queryProduct(Connection conn) throws SQLException {
 		String sql = "Select * from Product";
@@ -309,11 +352,10 @@ public class DBUtils {
 
 		pstm.executeUpdate();
 	}
-	
+
 	public static void addBoard(Connection conn, Board board) throws SQLException {
-		String sql = "INSERT INTO board (board_title, board_author, board_date, board_contents)" +
-				"VALUES (?,?,?,?)";
-		
+		String sql = "INSERT INTO board (board_title, board_author, board_date, board_contents)" + "VALUES (?,?,?,?)";
+
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
 		pstm.setString(1, board.getTitle());
@@ -322,7 +364,8 @@ public class DBUtils {
 		pstm.setString(4, board.getContents());
 
 		pstm.executeUpdate();
-}
+	}
+
 	public static List<UserAccount> queryUserAccount(Connection conn) throws SQLException {
 		String sql = "Select * from user_account";
 
@@ -334,7 +377,7 @@ public class DBUtils {
 			String id = rs.getString("user_id");
 			String major = rs.getString("user_major");
 			String name = rs.getString("user_name");
-			String email= rs.getString("user_email");
+			String email = rs.getString("user_email");
 			UserAccount user = new UserAccount();
 			user.setId(id);
 			user.setMajor(major);

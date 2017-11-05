@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +39,7 @@
 	<jsp:include page="_top.jsp"></jsp:include>
 	<jsp:include page="_navbar.jsp"></jsp:include>
 
-
 	<div id="all">
-
 		<div id="content">
 			<div class="container">
 
@@ -49,16 +49,62 @@
 						<li><a href="board">글 목록 보기</a></li>
 					</ul>
 
-					<div class="row" id="error-page">
-						<div class="col-md-12">
-							<div class="box">
-								<p>${board.contents}</p>
+					<!-- 					<div class="row" id="error-page"> -->
+					<div class="col-md-12">
+						<div class="box" style="margin-bottom: 20px">
+							<p>${board.contents}</p>
+						</div>
+
+						<div class="box" style="margin-bottom: 20px">
+							<div data-animate="fadeInUp">
+								<form id="comment-form" method="post">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<textarea class="form-control" id="comment" rows="2" placeholder="댓글을 입력해주세요."></textarea>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-sm-12 text-right">
+											<button id="comment-post-button" class="btn btn-primary">
+												<i class="fa fa-comment-o"></i> 댓글 남기기
+											</button>
+										</div>
+									</div>
+								</form>
 							</div>
+							<!-- /#comment-form -->
+
+						</div>
+						<div class="box">
+							<div id="comments" data-animate="fadeInUp">
+								<h4>${fn:length(commentList)}개의댓글이있습니다.</h4>
+								<c:forEach items="${commentList}" var="comment">
+									<div class="row comment">
+										<div class="col-sm-3 col-md-1 text-center-xs">
+											<p>
+												<!--                                         <img src="img/blog-avatar2.jpg" class="img-responsive img-circle" alt=""> -->
+											</p>
+										</div>
+										<div class="col-sm-9 col-md-11">
+											<h5>${comment.author}</h5>
+											<p class="posted">
+												<i class="fa fa-clock-o"></i> ${comment.date}
+											</p>
+											<p>${comment.contents}</p>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+							<!-- /#comments -->
+
 						</div>
 					</div>
-
-
 				</div>
+
+				<!-- 				</div> -->
 				<!-- /.col-md-9 -->
 			</div>
 			<!-- /.container -->
@@ -213,6 +259,34 @@
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/front.js"></script>
 	<script src="resources/js/respond.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var board_id = '${board.id}';
 
+			$("#comment-form").on('submit', function() {
+				var dt = new Date();
+				var datetime = dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
+				$.post('${pageContext.request.contextPath}/create_comment', {
+					date : datetime,
+					contents : $("#comment").val(),
+					board_id : board_id
+				}, function(data, status, jqXHR) {
+				// 			        alert( "\nStatus: " + status);
+				// 					alert("\nStatus: " + jqXHR.status);
+				}).done(function(data, status, jqXHR) {
+					window.location.replace("${pageContext.request.contextPath}/board_detail?board_id=" + board_id);
+					//  				window.location.replace("${pageContext.request.contextPath}/board");
+				}).fail(function(jqXHR) {
+					alert("로그인 후 댓글 작성이 가능합니다.");
+					window.location.replace("${pageContext.request.contextPath}/user_register");
+					// 					alert("실패!");
+					// 					alert("에러메시지" + jqXHR.responseText);
+				}).always(function() {
+				// 				 					alert("항상!");
+				});
+			});
+		});
+	</script>
 </body>
 </html>
