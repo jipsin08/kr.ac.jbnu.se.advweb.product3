@@ -54,9 +54,9 @@
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="#">홈</a>
                         </li>
-                        <li>Admin Page</li>
+                        <li>관리자 페이지</li>
                     </ul>
                 </div>
 
@@ -66,20 +66,20 @@
                     <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title">Admin Pages</h3>
+                            <h3 class="panel-title">관리자 페이지</h3>
                         </div>
 
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li>
-                                    <a href="user_manage">User Manage</a>
+                                    <a href="user_manage">회원 관리</a>
                                 </li>
-                                <li>
-                                    <a href="contact.html">Contact page</a>
-                                </li>
-                                <li>
-                                    <a href="faq.html">FAQ</a>
-                                </li>
+<!--                                 <li> -->
+<!--                                     <a href="contact.html">Contact page</a> -->
+<!--                                 </li> -->
+<!--                                 <li> -->
+<!--                                     <a href="faq.html">FAQ</a> -->
+<!--                                 </li> -->
 
                             </ul>
 
