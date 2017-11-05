@@ -8,7 +8,7 @@ _________________________________________________________ -->
     <div class="container">
         <div class="navbar-header">
 
-            <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+            <a class="navbar-brand home" href="home" data-animate-hover="bounce">
                 <img src="resources/img/logo.png" alt="ssogongnawa logo" class="hidden-xs">
                 <img src="resources/img/logo-small.png" alt="ssogongnawa logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
             </a>
@@ -22,7 +22,7 @@ _________________________________________________________ -->
                     <i class="fa fa-search"></i>
                 </button>
                 <a class="btn btn-default navbar-toggle" href="${pageContext.request.contextPath}/basket">
-                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">장바구니</span>
                 </a>
             </div>
         </div>
@@ -273,7 +273,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="${pageContext.request.contextPath}/basket" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
+                <a href="${pageContext.request.contextPath}/basket" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">장바구니</span></a>
             </div>
             <!--/.nav-collapse -->
 

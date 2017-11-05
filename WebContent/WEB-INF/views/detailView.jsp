@@ -30,7 +30,7 @@
     <link href="resources/css/owl.theme.css" rel="stylesheet">
 
     <!-- theme stylesheet -->
-    <link href="resources/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="resources/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
 
     <!-- your stylesheet with modifications -->
     <link href="resources/css/custom.css" rel="stylesheet">
@@ -238,12 +238,12 @@
                         <div class="col-sm-6">
                             <div class="box">
                                 <h1 class="text-center">${product.name}</h1>
-                                <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
+                                <p class="goToDescription"><a href="#details" class="scroll-to">상세정보로 스크롤 이동</a>
                                 </p>
                                 <p class="price">&#8361; ${product.price}</p>
 
                                 <p class="text-center buttons">
-                                	<button id="cart_btn_id" data-toggle="modal" data-target="#cart-modal" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                	<button id="cart_btn_id" data-toggle="modal" data-target="#cart-modal" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>장바구니에 담기</button>
                                 </p>
 
 
@@ -312,15 +312,15 @@
                             </blockquote>
 
                             <hr>
-                            <div class="social">
-                                <h4>Show it to your friends</h4>
-                                <p>
-                                    <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
-                                    <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
-                                    <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
-                                    <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-                                </p>
-                            </div>
+<!--                             <div class="social"> -->
+<!--                                 <h4>Show it to your friends</h4> -->
+<!--                                 <p> -->
+<!--                                     <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a> -->
+<!--                                     <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a> -->
+<!--                                     <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a> -->
+<!--                                     <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a> -->
+<!--                                 </p> -->
+<!--                             </div> -->
                     </div>
 
                     <div class="row same-height-row">

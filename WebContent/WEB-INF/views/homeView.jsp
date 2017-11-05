@@ -81,8 +81,8 @@
                                 <div class="icon"><i class="fa fa-heart"></i>
                                 </div>
 
-                                <h3><a href="#">We love our customers</a></h3>
-                                <p>We are known to provide best possible service ever</p>
+                                <h3><a href="#">고객 사랑</a></h3>
+                                <p>우리는 고객에게 최고의 서비스를 제공합니다.</p>
                             </div>
                         </div>
 
@@ -91,8 +91,8 @@
                                 <div class="icon"><i class="fa fa-tags"></i>
                                 </div>
 
-                                <h3><a href="#">Best prices</a></h3>
-                                <p>You can check that the height of the boxes adjust when longer text like this one is used in one of them.</p>
+                                <h3><a href="#">착한 가격</a></h3>
+                                <p>판타스틱한 가격에 여러분들을 모시겠습니다.</p>
                             </div>
                         </div>
 
@@ -101,8 +101,8 @@
                                 <div class="icon"><i class="fa fa-thumbs-up"></i>
                                 </div>
 
-                                <h3><a href="#">100% satisfaction guaranteed</a></h3>
-                                <p>Free returns on everything for 3 months.</p>
+                                <h3><a href="#">100% 만족도</a></h3>
+                                <p>모든 제품은 3개월 동안 무료로 환불이 가능합니다.</p>
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                 <div class="box">
                     <div class="container">
                         <div class="col-md-12">
-                            <h2>Hot this week</h2>
+                            <h2>제품들</h2>
                         </div>
                     </div>
                 </div>
@@ -159,279 +159,6 @@
 	                            <!-- /.product -->
 	                        </div>
 	                    </c:forEach>
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product1.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product1_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product1.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">Fur coat with very but very very long name</a></h3> --%>
-<!--                                     <p class="price">$143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
-
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product2_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product2.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">White Blouse Armani</a></h3> --%>
-<!--                                     <p class="price"><del>$280</del> $143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-
-<!--                                 <div class="ribbon sale"> -->
-<!--                                     <div class="theribbon">SALE</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-
-<!--                                 <div class="ribbon new"> -->
-<!--                                     <div class="theribbon">NEW</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-
-<!--                                 <div class="ribbon gift"> -->
-<!--                                     <div class="theribbon">GIFT</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
-
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product3.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product3_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product3.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">Black Blouse Versace</a></h3> --%>
-<!--                                     <p class="price">$143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
-
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product3.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product3_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product3.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">Black Blouse Versace</a></h3> --%>
-<!--                                     <p class="price">$143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
-
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product2_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product2.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">White Blouse Versace</a></h3> --%>
-<!--                                     <p class="price">$143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-
-<!--                                 <div class="ribbon new"> -->
-<!--                                     <div class="theribbon">NEW</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
-
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product1.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product1_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product1.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">Fur coat</a></h3> --%>
-<!--                                     <p class="price">$143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-
-<!--                                 <div class="ribbon gift"> -->
-<!--                                     <div class="theribbon">GIFT</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
-<!--                         /.col-md-4 -->
-
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product2_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product2.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">White Blouse Armani</a></h3> --%>
-<!--                                     <p class="price"><del>$280</del> $143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-
-<!--                                 <div class="ribbon sale"> -->
-<!--                                     <div class="theribbon">SALE</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-
-<!--                                 <div class="ribbon new"> -->
-<!--                                     <div class="theribbon">NEW</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-
-<!--                                 <div class="ribbon gift"> -->
-<!--                                     <div class="theribbon">GIFT</div> -->
-<!--                                     <div class="ribbon-background"></div> -->
-<!--                                 </div> -->
-<!--                                 /.ribbon -->
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
-
-<!--                         <div class="item"> -->
-<!--                             <div class="product"> -->
-<!--                                 <div class="flip-container"> -->
-<!--                                     <div class="flipper"> -->
-<!--                                         <div class="front"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product3.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                         <div class="back"> -->
-<%--                                             <a href="${pageContext.request.contextPath}/detail"> --%>
-<!--                                                 <img src="resources/img/product3_2.jpg" alt="" class="img-responsive"> -->
-<!--                                             </a> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<%--                                 <a href="${pageContext.request.contextPath}/detail" class="invisible"> --%>
-<!--                                     <img src="resources/img/product3.jpg" alt="" class="img-responsive"> -->
-<!--                                 </a> -->
-<!--                                 <div class="text"> -->
-<%--                                     <h3><a href="${pageContext.request.contextPath}/detail">Black Blouse Versace</a></h3> --%>
-<!--                                     <p class="price">$143.00</p> -->
-<!--                                 </div> -->
-<!--                                 /.text -->
-<!--                             </div> -->
-<!--                             /.product -->
-<!--                         </div> -->
 
                     </div>
                     <!-- /.product-slider -->
@@ -472,59 +199,6 @@
             </div>
             <!-- *** GET INSPIRED END *** -->
 
-            <!-- *** BLOG HOMEPAGE ***
- _________________________________________________________ -->
-
-            <div class="box text-center" data-animate="fadeInUp">
-                <div class="container">
-                    <div class="col-md-12">
-                        <h3 class="text-uppercase">From our blog</h3>
-
-                        <p class="lead">What's new in the world of fashion? <a href="blog.html">Check our blog!</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-
-                <div class="col-md-12" data-animate="fadeInUp">
-
-                    <div id="blog-homepage" class="row">
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="post.html">Fashion now</a></h4>
-                                <p class="author-category">By <a href="#">John Slim</a> in <a href="">Fashion and style</a>
-                                </p>
-                                <hr>
-                                <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                    ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="post.html">Who is who - example blog post</a></h4>
-                                <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a>
-                                </p>
-                                <hr>
-                                <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                    ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- /#blog-homepage -->
-                </div>
-            </div>
-            <!-- /.container -->
-
-            <!-- *** BLOG HOMEPAGE END *** -->
 
 
         </div>
@@ -538,40 +212,11 @@
     </div>
     <!-- /#all -->
     
-        <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Blog</h3>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <ul class="nav nav-pills nav-stacked">
-                                <li>
-                                    <a href="blog.html">About us</a>
-                                </li>
-                                <li class="active">
-                                    <a href="blog.html">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="blog.html">News and gossip</a>
-                                </li>
-                                <li>
-                                    <a href="blog.html">Design</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                    <!-- /.col-md-3 -->
-
-                    <!-- *** BLOG MENU END *** -->
-
-                    <div class="banner">
-                        <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div>
+    <div class="banner">
+    	<a href="#">
+        	<img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
+        </a>
+    </div>
 
 
     

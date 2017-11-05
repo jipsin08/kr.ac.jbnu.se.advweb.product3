@@ -67,14 +67,8 @@
 						<h1>회원가입</h1>
 
 						<p class="lead">아직 SsoGongnawa의 회원이 아니세요?</p>
-						<p>With registration with us new world of fashion, fantastic
-							discounts and much more opens to you! The whole process will not
-							take you more than a minute!</p>
-						<p class="text-muted">
-							If you have any questions, please feel free to <a
-								href="contact.html">contact us</a>, our customer service center
-							is working for you 24/7.
-						</p>
+						<p>어서 가입해서 중고 노트북의 새로운 세계와 판타스틱한 할인 등
+							모든 것들을 누려보세요.</p>
 
 						<hr>
 
@@ -101,7 +95,7 @@
 							</div>
 							<div class="text-center">
 								<button id="register-button" class="btn btn-primary">
-									<i class="fa fa-user-md"></i> Register
+									<i class="fa fa-user-md"></i> 가입
 								</button>
 							</div>
 						</form>
@@ -113,8 +107,6 @@
 						<h1>로그인</h1>
 
 						<p class="lead">계정이 있으신가요?</p>
-						<!--                         <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies -->
-						<!--                             mi vitae est. Mauris placerat eleifend leo.</p> -->
 
 						<hr>
 
@@ -129,7 +121,7 @@
 						</div>
 						<p class="text-left">
 							<input type="checkbox" id="rememberMe-id" name="rememberMe" />
-							자동로그인
+							로그인 상태 유지
 						</p>
 						<div class="text-center">
 							<button id="login-button" class="btn btn-primary">

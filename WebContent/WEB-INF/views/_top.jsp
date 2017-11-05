@@ -72,8 +72,8 @@
 <div id="top">
 	<div class="container">
 		<div class="col-md-6 offer" data-animate="fadeInDown">
-			<a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer
-				of the day</a> <a href="#">Get flat 35% off on orders over $50!</a>
+<!-- 			<a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer -->
+<!-- 				of the day</a> <a href="#">Get flat 35% off on orders over $50!</a> -->
 		</div>
 		<div class="col-md-6" data-animate="fadeInDown">
 			<ul class="menu">
@@ -81,8 +81,6 @@
 				<li class="hidden" id="li-register"><a href="user_register">회원가입</a></li>
 				<li class="hidden" id="li-edit"><a href="user_edit">회원정보수정</a>
 				<li class="hidden" id="li-logout"><a href="#">로그아웃</a></li>
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="#">Recently viewed</a></li>
 			</ul>
 		</div>
 	</div>
@@ -94,7 +92,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="Login">Customer login</h4>
+					<h4 class="modal-title" id="Login">로그인</h4>
 				</div>
 				<div class="modal-body">
 					<form id="login_form_id" action="login" method="POST">
@@ -109,20 +107,19 @@
 
 						<p class="text-left">
 							<input type="checkbox" id="rememberMe-id" name="rememberMe"
-								value="Y" /> Remember me?
+								value="Y" /> 로그인 상태 유지
 						</p>
 						<p class="text-center">
 							<button id="btn-login" class="btn btn-primary" type="submit">
-								<i class="fa fa-sign-in"></i> Log in
+								<i class="fa fa-sign-in"></i> 로그인
 							</button>
 						</p>
 					</form>
 
-					<p class="text-center text-muted">Not registered yet?</p>
+					<p class="text-center text-muted">아직 가입을 안하셨다구요?</p>
 					<p class="text-center text-muted">
-						<a href="user_register"><strong>Register now</strong></a>! It is
-						easy and done in 1&nbsp;minute and gives you access to special
-						discounts and much more!
+						<a href="user_register"><strong>바로 가입하세요</strong></a>! 가입하는데 아주 간단해
+						&nbsp;1분밖에 걸리지 않는다구요! 어서 가입해서 특별 할인을 받으세여!
 					</p>
 
 				</div>
