@@ -66,15 +66,16 @@ public class EditProductServlet extends HttpServlet {
             throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
  
-        String code = (String) request.getParameter("code");
         String name = (String) request.getParameter("name");
-        String priceStr = (String) request.getParameter("price");
-        float price = 0;
-        try {
-            price = Float.parseFloat(priceStr);
-        } catch (Exception e) {
-        }
-        Product product = new Product(code, name, price);
+		String price = (String) request.getParameter("price");
+		String brand = (String) request.getParameter("brand");
+		String cpu = (String) request.getParameter("cpu");
+		String graphicCard = (String) request.getParameter("graphicCard");
+		String description = (String) request.getParameter("description");
+		String image = (String) request.getParameter("image");
+
+		
+		Product product = new Product(name, price, brand, cpu, graphicCard, description, image);
  
         String errorString = null;
  

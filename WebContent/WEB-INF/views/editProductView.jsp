@@ -20,18 +20,39 @@
          <form method="POST" action="${pageContext.request.contextPath}/editProduct">
             <input type="hidden" name="code" value="${product.code}" />
             <table border="0">
-               <tr>
-                  <td>Code</td>
-                  <td style="color:red;">${product.code}</td>
-               </tr>
-               <tr>
-                  <td>Name</td>
-                  <td><input type="text" name="name" value="${product.name}" /></td>
-               </tr>
-               <tr>
-                  <td>Price</td>
-                  <td><input type="text" name="price" value="${product.price}" /></td>
-               </tr>
+              <tr>
+				<td>Code</td>
+				<td><input type="text" name="code" value="${product.code}" /></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="name" value="${product.name}" /></td>
+			</tr>
+			<tr>
+				<td>Price</td>
+				<td><input type="text" name="price" value="${product.price}" /></td>
+			</tr>
+			
+			<tr>
+				<td>Brand</td>
+				<td><input type="text" name="brand" value="${product.brand}" /></td>
+			</tr>
+			
+			<tr>
+				<td>CPU</td>
+				<td><input type="text" name="cpu" value="${product.cpu}" /></td>
+			</tr>
+		
+			<tr>
+				<td>Graphic Card</td>
+				<td><input type="text" name="graphicCard" value="${product.graphicCard}" /></td>
+			</tr>
+			
+			<!-- <tr>
+				<td>Image</td>
+				<td><img name="preview" src="../images/product/noimage.jpg" style="width:100%"><br/>
+					<input type="file" name="image" size="30" onchange="filePreview()"></td>
+			</tr> -->
                <tr>
                   <td colspan = "2">
                       <input type="submit" value="Submit" />

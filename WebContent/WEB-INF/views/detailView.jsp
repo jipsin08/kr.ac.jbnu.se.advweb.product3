@@ -15,7 +15,7 @@
     <meta name="keywords" content="">
 
     <title>
-    	소공나와
+    	쏘공나와
     </title>
 
     <meta name="keywords" content="">
@@ -47,6 +47,7 @@
 	<jsp:include page="_top.jsp"></jsp:include>
     <jsp:include page="_navbar.jsp"></jsp:include>
     <jsp:include page="recentProduct.jsp"></jsp:include>
+    
 
     <div id="all">
 
@@ -542,6 +543,27 @@
     		$("#cart_btn_id").removeAttr("data-target");
     		$("#cart_btn_id").attr("onclick", "location.href='${pageContext.request.contextPath}/user_register'");
     	}
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        if(!!$.cookie("recentProduct")) {
+            var products = $.parseJSON($.cookie("recentProduct"));
+            if(product.length >= 3) {
+                products.sort().reverse();
+                products.pop();
+                products.sort().reverse();
+            }
+            products.push(
+                    { "name" : "${product.name}", "code" : "${product.code}"}
+            );
+            $.cookie("recentProduct", JSON.stringify(product));
+        } else {
+            var products = [
+                 {"name" : "${product.name}", "code" : "${product.code}"}
+             ];
+             $.cookie("recentProduct", JSON.stringify(products));
+        }    
     });
 	</script>
 	<script>

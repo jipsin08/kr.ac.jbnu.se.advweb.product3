@@ -153,7 +153,7 @@ public class DBUtils {
 
 
 	public static List<Product> queryProduct(Connection conn) throws SQLException {
-		String sql = "Select a.Code, a.Name, a.Price from Product a ";
+		String sql = "Select * from Product";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -162,11 +162,23 @@ public class DBUtils {
 		while (rs.next()) {
 			String code = rs.getString("Code");
 			String name = rs.getString("Name");
-			float price = rs.getFloat("Price");
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("Cpu");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			String image = rs.getString("image");
+			
 			Product product = new Product();
 			product.setCode(code);
 			product.setName(name);
 			product.setPrice(price);
+			product.setBrand(brand);
+			product.setCpu(cpu);
+			product.setGraphicCard(graphicCard);
+			product.setDescription(description);
+			product.setImage(image);
+			
 			list.add(product);
 		}
 		return list;
@@ -221,7 +233,7 @@ public class DBUtils {
 	}
 
 	public static Product findProduct(Connection conn, String code) throws SQLException {
-		String sql = "Select a.Code, a.Name, a.Price from Product a where a.Code=?";
+		String sql = "Select a.Code, a.Name, a.Price, a.Brand, a.CPU, a.GraphicCard, a.Description from Product a where a.Code=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, code);
@@ -230,32 +242,44 @@ public class DBUtils {
 
 		while (rs.next()) {
 			String name = rs.getString("Name");
-			float price = rs.getFloat("Price");
-			Product product = new Product(code, name, price);
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("CPU");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			Product product = new Product(code, name, price, brand, cpu, graphicCard, description);
 			return product;
 		}
 		return null;
 	}
 
 	public static void updateProduct(Connection conn, Product product) throws SQLException {
-		String sql = "Update Product set Name =?, Price=? where Code=? ";
+		String sql = "Update Product set Name =?, Price=?, Brand=?, CPU=?, GraphicCard=?, Description=? where Code=? ";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
 		pstm.setString(1, product.getName());
-		pstm.setFloat(2, product.getPrice());
-		pstm.setString(3, product.getCode());
+		pstm.setString(2, product.getPrice());
+		pstm.setString(3, product.getBrand());
+		pstm.setString(4, product.getCpu());
+		pstm.setString(5, product.getGraphicCard());
+		pstm.setString(6, product.getDescription());
 		pstm.executeUpdate();
 	}
 
 	public static void insertProduct(Connection conn, Product product) throws SQLException {
-		String sql = "Insert into Product(Code, Name,Price) values (?,?,?)";
+		String sql = "Insert into Product(Name, Price, Brand, Cpu, GraphicCard, Description, Image) values (?,?,?,?,?,?,?)";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
-		pstm.setString(1, product.getCode());
-		pstm.setString(2, product.getName());
-		pstm.setFloat(3, product.getPrice());
+		pstm.setString(1, product.getName());
+		pstm.setString(2, product.getPrice());
+		pstm.setString(3, product.getBrand());
+		pstm.setString(4, product.getCpu());
+		pstm.setString(5, product.getGraphicCard());
+		pstm.setString(6, product.getDescription());
+		pstm.setString(7, product.getImage());
+
 
 		pstm.executeUpdate();
 	}

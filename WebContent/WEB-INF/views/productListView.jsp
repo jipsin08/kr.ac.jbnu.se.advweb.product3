@@ -21,6 +21,10 @@
           <th>Code</th>
           <th>Name</th>
           <th>Price</th>
+          <th>Brand</th>
+          <th>CPU</th>
+          <th>GraphicCard</th>
+          
           <th>Edit</th>
           <th>Delete</th>
        </tr>
@@ -29,6 +33,9 @@
              <td>${product.code}</td>
              <td>${product.name}</td>
              <td>${product.price}</td>
+             <td>${product.brand}</td>
+             <td>${product.cpu}</td>
+             <td>${product.graphicCard}</td>
              <td>
                 <a href="editProduct?code=${product.code}">Edit</a>
              </td>
@@ -39,7 +46,7 @@
        </c:forEach>
     </table>
  
-    <a href="createProduct" >Create Product</a>
+    <a href="createProduct">Create Product</a>
  
     <jsp:include page="_footer.jsp"></jsp:include>
  

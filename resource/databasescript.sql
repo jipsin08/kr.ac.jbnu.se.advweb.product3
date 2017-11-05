@@ -1,5 +1,4 @@
 
-
 -- create database and set previledge to root account
 create database simpleweb;
 use simpleweb;
@@ -8,12 +7,14 @@ grant all privileges on simpleweb.* to root@localhost ;
 
 -- Create table
 
-create table USER_ACCOUNT
+create table user_account
 (
-USER_NAME VARCHAR(30) not null,
-GENDER    VARCHAR(1) not null,
-PASSWORD  VARCHAR(30) not null,
-primary key (USER_NAME)
+user_id varchar(20) NOT NULL,
+user_major varchar(20) NOT NULL,
+user_name varchar(10) NOT NULL,
+user_email varchar(20) NOT NULL,
+user_password varchar(20) NOT NULL,
+PRIMARY KEY(user_id)
 );
  
 
@@ -24,14 +25,21 @@ NAME  VARCHAR(128) not null,
 PRICE FLOAT not null,
 primary key (CODE)
 ) ;
+
+create table cart
+(
+cart_id INT NOT NULL AUTO_INCREMENT,
+cart_user varchar(30) NOT NULL,
+cart_item varchar(20) NOT NULL,
+PRIMARY KEY(cart_id),
+FOREIGN KEY(cart_user) references user_account (USER_ID),
+FOREIGN KEY(cart_item) references product (CODE)
+);
  
 -- Insert data: ---------------------------------------------------------------
  
-insert into user_account (USER_NAME, GENDER, PASSWORD)
-values ('tom', 'M', 'tom001');
- 
-insert into user_account (USER_NAME, GENDER, PASSWORD)
-values ('jerry', 'M', 'jerry001');
+INSERT INTO user_account                                
+VALUES ('201215466', '소프트웨어공학과', '박도현', 'dohun94@naver.com' , '1234');       
  
 insert into product (CODE, NAME, PRICE)
 values ('P001', 'Java Core', 100);
