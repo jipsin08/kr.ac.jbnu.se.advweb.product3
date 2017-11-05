@@ -262,6 +262,9 @@ _________________________________________________________ -->
                         </li>
                     </ul>
                 </li>
+	           
+    	        <li><a href="${pageContext.request.contextPath}/board">게시판</a></li>
+	            
             </ul>
 
         </div>

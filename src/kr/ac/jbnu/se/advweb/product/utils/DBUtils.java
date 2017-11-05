@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.ac.jbnu.se.advweb.product.model.Board;
 import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
@@ -73,6 +74,77 @@ public class DBUtils {
 		}
 		return null;
 	}
+	
+	public static List<Board> queryBoard(Connection conn) throws SQLException {
+		String sql = "Select * from board";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+		List<Board> list = new ArrayList<Board>();
+		
+		while (rs.next()) {
+			String id = rs.getString("board_id"); 
+			String title = rs.getString("board_title");
+			String author = rs.getString("board_author");
+			String date = rs.getString("board_date");
+			String hits = rs.getString("board_hits");
+			String contents = rs.getString("board_contents");
+			
+			Board board = new Board();
+			board.setId(id);
+			board.setTitle(title);
+			board.setAuthor(author);
+			board.setDate(date);
+			board.setHits(hits);
+			board.setContents(contents);
+			
+			list.add(board);
+		}
+		return list;
+	}
+	
+	public static Board findBoardById(Connection conn, String board_id) throws SQLException {
+		String sql = "Select * from board where board_id=?";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, board_id);
+
+		ResultSet rs = pstm.executeQuery();
+		Board board = new Board();
+		
+		while (rs.next()) {
+			String id = rs.getString("board_id"); 
+			String title = rs.getString("board_title");
+			String author = rs.getString("board_author");
+			String date = rs.getString("board_date");
+			String hits = rs.getString("board_hits");
+			String contents = rs.getString("board_contents");
+			
+			board.setId(id);
+			board.setTitle(title);
+			board.setAuthor(author);
+			board.setDate(date);
+			board.setHits(hits);
+			board.setContents(contents);
+			
+			//1개만..
+			break;
+		}
+		return board;
+	}
+	
+	public static void updateBoardHits(Connection conn, Board board) throws SQLException {
+		String sql = "Update board set board_hits=? where board_id=? ";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		int hit = Integer.parseInt(board.getHits()) + 1;
+		
+		pstm.setString(1, String.valueOf(hit));
+		pstm.setString(2, board.getId());
+		pstm.executeUpdate();
+	}
+
 
 	public static List<Product> queryProduct(Connection conn) throws SQLException {
 		String sql = "Select a.Code, a.Name, a.Price from Product a ";
@@ -202,6 +274,20 @@ public class DBUtils {
 		pstm.setString(3, user.getUserName());
 		pstm.setString(4, user.getEmail());
 		pstm.setString(5, user.getPassword());
+
+		pstm.executeUpdate();
+	}
+	
+	public static void addBoard(Connection conn, Board board) throws SQLException {
+		String sql = "INSERT INTO board (board_title, board_author, board_date, board_contents)" +
+				"VALUES (?,?,?,?)";
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, board.getTitle());
+		pstm.setString(2, board.getAuthor());
+		pstm.setString(3, board.getDate());
+		pstm.setString(4, board.getContents());
 
 		pstm.executeUpdate();
 	}
