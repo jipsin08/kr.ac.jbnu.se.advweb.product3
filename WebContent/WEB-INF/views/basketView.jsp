@@ -29,7 +29,7 @@
     <link href="resources/css/owl.theme.css" rel="stylesheet">
 
     <!-- theme stylesheet -->
-    <link href="resources/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="resources/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
 
     <!-- your stylesheet with modifications -->
     <link href="resources/css/custom.css" rel="stylesheet">
@@ -55,20 +55,19 @@
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="home">홈</a>
                         </li>
-                        <li>Shopping cart</li>
+                        <li>장바구니</li>
                     </ul>
                 </div>
 
-                <div class="col-md-9" id="basket">
+                <div class="col-md-12" id="basket">
 
                     <div class="box">
 
                         <form method="post" action="checkout1.html">
 
-                            <h1>Shopping cart</h1>
-                            <p class="text-muted">You currently have 3 item(s) in your cart.</p>
+                            <h1>장바구니</h1>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -105,7 +104,7 @@
                                     <tfoot>
                                         <tr>
                                         	<th colspan="3"></th>
-                                            <th colspan="2">Total</th>
+                                            <th colspan="2">합계</th>
                                             <th colspan="2">${total}</th>
                                         </tr>
                                     </tfoot>
@@ -116,12 +115,7 @@
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
-                                </div>
-                                <div class="pull-right">
-                                    <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
-                                    <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                                    </button>
+                                    <a href="home" class="btn btn-default"><i class="fa fa-chevron-left"></i> 쇼핑 계속하기</a>
                                 </div>
                             </div>
 
@@ -226,59 +220,6 @@
 
                 </div>
                 <!-- /.col-md-9 -->
-
-                <div class="col-md-3">
-                    <div class="box" id="order-summary">
-                        <div class="box-header">
-                            <h3>Order summary</h3>
-                        </div>
-                        <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Order subtotal</td>
-                                        <th>$446.00</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping and handling</td>
-                                        <th>$10.00</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Tax</td>
-                                        <th>$0.00</th>
-                                    </tr>
-                                    <tr class="total">
-                                        <td>Total</td>
-                                        <th>$456.00</th>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-
-
-                    <div class="box">
-                        <div class="box-header">
-                            <h4>Coupon code</h4>
-                        </div>
-                        <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
-                        <form>
-                            <div class="input-group">
-
-                                <input type="text" class="form-control">
-
-                                <span class="input-group-btn">
-
-					<button class="btn btn-primary" type="button"><i class="fa fa-gift"></i></button>
-
-				    </span>
-                            </div>
-                            <!-- /input-group -->
-                        </form>
-                    </div>
 
                 </div>
                 <!-- /.col-md-3 -->

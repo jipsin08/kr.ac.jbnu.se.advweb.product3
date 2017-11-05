@@ -17,30 +17,6 @@
 				$("#li-edit").removeClass('hidden');
 			}
 		});
-		
-		
-// 		//로그인 모달창에서 로그인 버튼 눌러서 로그인 요청
-// 		$("#btn-login").on('click', function() {
-// 			alert($("rememberMe-id").val());
-// 	    		$.post('${pageContext.request.contextPath}/login', {
-// 					email : $("#email-modal").val(),
-// 					password : $("#password-modal").val(),
-// 					rememberMe : $("#rememberMe-id").is(":checked"),
-// 				}, function(data, status, jqXHR){
-					
-// 			    })
-// 			    .done(function(data, status, jqXHR) {
-// 			        console.log('responseURL:', xhr.responseURL, 'responseText:', responseText);
-// // 					window.location.replace("${pageContext.request.contextPath}/home");
-// 				})
-// 				.fail(function(jqXHR) {
-// 					alert("실패!");
-// 					alert("에러메시지" + jqXHR.responseText);
-// 				})
-// 				.always(function() {
-// // 					alert("항상!");
-// 				});
-// 			});
 			
 		$("#login_form_id").on('submit', function (e) {
 			$.post('${pageContext.request.contextPath}/login', 
@@ -72,8 +48,6 @@
 <div id="top">
 	<div class="container">
 		<div class="col-md-6 offer" data-animate="fadeInDown">
-<!-- 			<a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer -->
-<!-- 				of the day</a> <a href="#">Get flat 35% off on orders over $50!</a> -->
 		</div>
 		<div class="col-md-6" data-animate="fadeInDown">
 			<ul class="menu">
