@@ -47,7 +47,7 @@ $(document).ready(function() {
     var cookie_value = $.parseJSON($.cookie("recentProduct"));
     $($(".products").get().reverse()).each(function(i, e){
         if(cookie_value[i] != null) {
-            $(this).find("a").find("img").attr("src", "resources/img/product1.jpg");
+            $(this).find("a").find("img").attr("src", cookie_value[i]["image"]);
             $(this).find("a").attr("href", "${pageContext.request.contextPath}/detail?product=" + cookie_value[i]["code"]);
             $(this).find("div").text(cookie_value[i]["name"]);
         }
