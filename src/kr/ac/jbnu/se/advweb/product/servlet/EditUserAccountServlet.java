@@ -12,22 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
 /**
- * Servlet implementation class DeleteCartProduct
+ * Servlet implementation class EditUserAccountServlet
  */
-@WebServlet("/deleteCartProduct")
-public class DeleteCartProduct extends HttpServlet {
+@WebServlet(urlPatterns = {"/user_edit"})
+public class EditUserAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCartProduct() {
+    public EditUserAccountServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,21 +36,16 @@ public class DeleteCartProduct extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Connection conn = MyUtils.getStoredConnection(request);
-		String productCode = request.getParameter("product");
-		
 		HttpSession session = request.getSession();
 		UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		
-		String errorString = null;
-		try {
-			DBUtils.deleteCart(conn, loginedUser.getId(), productCode);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			errorString = e.getMessage();
+		if(loginedUser == null) {
+			response.sendRedirect(request.getContextPath() + "/user_register");
+		} else {
+			RequestDispatcher dispatcher = request.getServletContext()
+	                .getRequestDispatcher("/WEB-INF/views/editUserAccountView.jsp");
+	        dispatcher.forward(request, response);
 		}
-		
-		response.sendRedirect(request.getContextPath() + "/basket");
 	}
 
 	/**
@@ -59,7 +53,33 @@ public class DeleteCartProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		Connection conn = MyUtils.getStoredConnection(request);
+
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		String errorString = null;
+
+		String name = request.getParameter("name");
+		String major = request.getParameter("major");
+		String password = request.getParameter("password");
+		
+		UserAccount user = new UserAccount();
+		user.setId(loginedUser.getId());
+		user.setUserName(name);
+		user.setMajor(major);
+		user.setEmail(loginedUser.getEmail());
+		user.setPassword(password);
+		
+		if (errorString == null) {
+			try {
+				DBUtils.updateUserAccount(conn, user);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
 
 }

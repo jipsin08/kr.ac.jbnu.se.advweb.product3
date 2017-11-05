@@ -217,4 +217,18 @@ public class DBUtils {
 		else
 			return false;
 	}
+	
+	public static void updateUserAccount(Connection conn, UserAccount userAccount) throws SQLException {
+		String sql = "Update user_account set user_major=?, user_name=?, user_password=? where user_id=? ";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, userAccount.getMajor());
+		pstm.setString(2, userAccount.getUserName());
+		pstm.setString(3, userAccount.getPassword());
+		pstm.setString(4, userAccount.getId());
+		pstm.executeUpdate();
+		
+		
+	}
 }

@@ -538,7 +538,6 @@
     <script>
     $(document).ready(function() {
     	var sessionflag = "${sessionflag}";
-    	alert(sessionflag);
     	if(sessionflag == "true") {
     		$("#cart_btn_id").click(function() {
         		$.ajax({

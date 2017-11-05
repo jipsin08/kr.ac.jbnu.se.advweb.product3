@@ -13,6 +13,7 @@
 				$("#li-register").removeClass('hidden');
 			} else if(data == "logged in") {
 				$("#li-logout").removeClass('hidden');
+				$("#li-edit").removeClass('hidden');
 			}
 		});
 		
@@ -60,6 +61,7 @@
 			<ul class="menu">
 				<li class="hidden" id="li-login"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
 				<li class="hidden" id="li-register"><a href="user_register">Register</a></li>
+				<li class="hidden" id="li-edit"><a href="user_edit">회원정보수정</a>
 				<li class="hidden" id="li-logout"><a href="#">Logout</a></li>
 				<li><a href="contact.html">Contact</a></li>
 				<li><a href="#">Recently viewed</a></li>
