@@ -11,8 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
@@ -39,6 +41,15 @@ public class ProductDetailServlet extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
 		String productCode = request.getParameter("product");
 		
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		if(loginedUser == null) {
+			request.setAttribute("sessionflag", false);
+		} else {
+			request.setAttribute("sessionflag", true);
+		}
+		
 		String errorString = null;
 		Product product = null;
 		try {
@@ -63,14 +74,16 @@ public class ProductDetailServlet extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
 		String productCode = request.getParameter("product");
 		
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
 		String errorString = null;
 		List<Product> list = null;
 		try {
-			DBUtils.insertCart(conn, "201215466", productCode);
+			DBUtils.insertCart(conn, loginedUser.getId(), productCode);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
 		}
 	}
-
 }

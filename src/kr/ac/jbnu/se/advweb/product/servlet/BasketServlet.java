@@ -11,8 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
@@ -38,21 +40,28 @@ public class BasketServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Connection conn = MyUtils.getStoredConnection(request);
 		
-		String errorString = null;
-		List<Product> list = null;
-		try {
-			list = DBUtils.queryCart(conn, "201215466");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			errorString = e.getMessage();
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		if(loginedUser == null) {
+			response.sendRedirect(request.getContextPath() + "/user_register");
+		} else {
+			String errorString = null;
+			List<Product> list = null;
+			try {
+				list = DBUtils.queryCart(conn, loginedUser.getId());
+			} catch (SQLException e) {
+				e.printStackTrace();
+				errorString = e.getMessage();
+			}
+			
+			request.setAttribute("errorString", errorString);
+			request.setAttribute("cartList", list);
+			
+			RequestDispatcher dispatcher = request.getServletContext()
+	                .getRequestDispatcher("/WEB-INF/views/basketView.jsp");
+	        dispatcher.forward(request, response);
 		}
-		
-		request.setAttribute("errorString", errorString);
-		request.setAttribute("cartList", list);
-		
-		RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/basketView.jsp");
-        dispatcher.forward(request, response);
 	}
 
 	/**
