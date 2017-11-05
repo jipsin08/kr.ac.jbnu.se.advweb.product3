@@ -203,4 +203,18 @@ public class DBUtils {
 
 		pstm.executeUpdate();
 	}
+	
+	public static boolean checkUserAccount(Connection conn, String userid) throws SQLException {
+		String sql = "Select * from user_account where user_id=?";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, userid);
+
+		ResultSet rs = pstm.executeQuery();
+
+		if(rs.next())
+			return true;
+		else
+			return false;
+	}
 }

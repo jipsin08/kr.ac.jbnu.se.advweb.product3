@@ -36,56 +36,8 @@
 <!-- your stylesheet with modifications -->
 <link href="resources/css/custom.css" rel="stylesheet">
 
+
 <script src="resources/js/respond.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$("#register-button").on('click', function() {
-			$.post('${pageContext.request.contextPath}/user_register', {
-				name : $("#name").val(),
-				id : $("#student_number").val(),
-				major : $("#major").val(),
-				email : $("#email").val(),
-				password : $("#password").val(),
-			}, function(data, status, jqXHR) {
-			// 			        alert( "\nStatus: " + status);
-			// 			        alert( "\nStatus: " + jqXHR.status);
-			}).done(function() {
-				alert("성공!");
-				window.location.replace("${pageContext.request.contextPath}/home");
-			}).fail(function(jqXHR) {
-				alert("실패!");
-				alert("에러메시지" + jqXHR.responseText);
-			}).always(function() {
-			// 					alert("항상!");
-			});
-		});
-
-		//회원가입 옆에 있는 로그인 화면
-		$("#login-button").on('click', function() {
-			$.post('${pageContext.request.contextPath}/login', {
-				email : $("#login-email").val(),
-				password : $("#login-password").val(),
-				rememberMe : $("#rememberMe-id").is(":checked"),
-			}, function(data, status, jqXHR) {
-			// 			        alert( "\nStatus: " + status);
-			// 			        alert( "\nStatus: " + jqXHR.status);
-			}).done(function() {
-				alert("성공!");
-				window.location.replace("${pageContext.request.contextPath}/home");
-			}).fail(function(jqXHR) {
-				alert("실패!");
-				alert("에러메시지" + jqXHR.responseText);
-			}).always(function() {
-			// 					alert("항상!");
-			});
-		});
-	});
-</script>
-
 
 <link rel="shortcut icon" href="favicon.png">
 
@@ -126,33 +78,33 @@
 
 						<hr>
 
-						<!--                         <form action="finished_register" id="form_user_register"> -->
-						<div class="form-group">
-							<label for="name">이름</label> <input type="text"
-								class="form-control" id="name">
-						</div>
-						<div class="form-group">
-							<label for="student_number">학번</label> <input type="text"
-								class="form-control" id="student_number">
-						</div>
-						<div class="form-group">
-							<label for="student_number">전공</label> <input type="text"
-								class="form-control" id="major">
-						</div>
-						<div class="form-group">
-							<label for="email">이메일</label> <input type="text"
-								class="form-control" id="email">
-						</div>
-						<div class="form-group">
-							<label for="password">비밀번호</label> <input type="password"
-								class="form-control" id="password">
-						</div>
-						<div class="text-center">
-							<button id="register-button" class="btn btn-primary">
-								<i class="fa fa-user-md"></i> Register
-							</button>
-						</div>
-						<!--                         </form> -->
+						<form id="form_user_register" action="">
+							<div class="form-group">
+								<label for="name">이름</label> <input type="text"
+									class="form-control" id="name" name="name">
+							</div>
+							<div class="form-group">
+								<label for="student_number">학번</label> <input type="text"
+									class="form-control" id="student_number" name="student_number">
+							</div>
+							<div class="form-group">
+								<label for="student_number">전공</label> <input type="text"
+									class="form-control" id="major" name="major">
+							</div>
+							<div class="form-group">
+								<label for="email">이메일</label> <input type="text"
+									class="form-control" id="email" name="email">
+							</div>
+							<div class="form-group">
+								<label for="password">비밀번호</label> <input type="password"
+									class="form-control" id="password" name="password">
+							</div>
+							<div class="text-center">
+								<button id="register-button" class="btn btn-primary">
+									<i class="fa fa-user-md"></i> Register
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 
@@ -208,6 +160,8 @@
 	<!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
 	<script src="resources/js/jquery-1.11.0.min.js"></script>
+	<script src="resources/js/jquery.validate.min.js"></script>
+	<script src="resources/js/additional-methods.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/jquery.cookie.js"></script>
 	<script src="resources/js/waypoints.min.js"></script>
@@ -215,6 +169,125 @@
 	<script src="resources/js/bootstrap-hover-dropdown.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/front.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$.validator.addMethod("kor",  function( value, element ) {
+			return this.optional(element) ||  /^[가-힣]+$/.test(value);
+		}); 
+		
+		$.validator.addMethod("password",  function( value, element ) {
+			return this.optional(element) ||  /^.*(?=^.{6,15}$)(?=.*\d)(?=.*[a-zA-Z]).*$/.test(value);
+		}); 
+		
+		$("#form_user_register").validate({
+			debug: true,
+			errorClass: "error",
+			highlight: function(element, errorClass) {
+		        $(element).fadeOut(function() {
+		            $(element).fadeIn();
+		        });
+		    },
+			rules: { 
+				name: { 
+					required: true,
+					maxlength: 4,
+					kor: true
+				},
+				student_number: {
+					required: true,
+					number: true,
+					rangelength: [9, 9],
+					remote: {
+						url: "${pageContext.request.contextPath}/CheckId",
+						type: "post"
+					}
+				},
+				major: {
+					required: true
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true,
+					password: true
+				}
+			},
+			messages: { 
+				name: {	
+					required: "필수 입력사항입니다.",
+					maxlength: "최대 {0}글자이하여야 합니다.",
+					kor: "자/모음만 있거나 영어가 있으면 안댐"
+				},
+				student_number: {
+					required: "필수 입력사항입니다.",
+					number: "숫자만 가능함",
+					rangelength: "학번은 9자여야 함",
+					remote: "이미 존재하는 학번임"
+				},
+				major: {
+					required: "필수 입력사항입니다."
+				},
+				email: {
+					required: "필수 입력사항입니다.",
+					email: "올바른 형식이 아닙니다."
+				},
+				password: {
+					required: "필수 입력사항입니다.",
+					password: "영/숫자 포함 6자 이상이어야 함"
+				}
+			},
+			errorClass: "validation-error"
+		});
+		
+		$("#register-button").on('click', function() {
+			if($("#form_user_register").valid()) {
+				$.post('${pageContext.request.contextPath}/user_register', {
+					name : $("#name").val(),
+					id : $("#student_number").val(),
+					major : $("#major").val(),
+					email : $("#email").val(),
+					password : $("#password").val(),
+				}, function(data, status, jqXHR) {
+				// 			        alert( "\nStatus: " + status);
+				// 			        alert( "\nStatus: " + jqXHR.status);
+				}).done(function() {
+					alert("성공!");
+					window.location.replace("${pageContext.request.contextPath}/home");
+				}).fail(function(jqXHR) {
+					alert("실패!");
+					alert("에러메시지" + jqXHR.responseText);
+				}).always(function() {
+				// 					alert("항상!");
+				});
+			} else {
+			}
+		});
+
+		//회원가입 옆에 있는 로그인 화면
+		$("#login-button").on('click', function() {
+			$.post('${pageContext.request.contextPath}/login', {
+				email : $("#login-email").val(),
+				password : $("#login-password").val(),
+				rememberMe : $("#rememberMe-id").is(":checked"),
+			}, function(data, status, jqXHR) {
+			// 			        alert( "\nStatus: " + status);
+			// 			        alert( "\nStatus: " + jqXHR.status);
+			}).done(function() {
+				alert("성공!");
+				window.location.replace("${pageContext.request.contextPath}/home");
+			}).fail(function(jqXHR) {
+				alert("실패!");
+				alert("에러메시지" + jqXHR.responseText);
+			}).always(function() {
+			// 					alert("항상!");
+			});
+		});
+	});
+</script>
+
 
 </body>
 
