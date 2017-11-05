@@ -13,31 +13,9 @@
 				$("#li-register").removeClass('hidden');
 			} else if(data == "logged in") {
 				$("#li-logout").removeClass('hidden');
+				$("#li-MyPage").removeClass('hidden');
 			}
 		});
-		
-		//로그인 모달창에서 로그인 버튼 눌러서 로그인 요청
-		$("#btn-login").on('click', function() {
-	    		$.post('${pageContext.request.contextPath}/login', {
-					email : $("#email-modal").val(),
-					password : $("#password-modal").val(),
-					rememberMe : $("#rememberMe-id").is(":checked"),
-				}, function(data, status, jqXHR){
-// 			        alert( "\nStatus: " + status);
-// 			        alert( "\nStatus: " + jqXHR.status);
-			    })
-			    .done(function(data, status, jqXHR) {
-					window.location.replace("${pageContext.request.contextPath}/home");
-				})
-				.fail(function(jqXHR) {
-					alert("실패!");
-					alert("에러메시지" + jqXHR.responseText);
-				})
-				.always(function() {
-// 					alert("항상!");
-				});
-			});
-
 		//로그아웃
 		$('ul.menu li').click(function(e) {
 			if ($(this).text() == 'Logout') {
@@ -47,7 +25,7 @@
 				});
 			}
 		});
-	})
+	});
 </script>
 
 <div id="top">
@@ -77,7 +55,7 @@
 					<h4 class="modal-title" id="Login">Customer login</h4>
 				</div>
 				<div class="modal-body">
-<!-- 					<form id="login_form_id" action="home" method="POST"> -->
+					<form id="login_form_id" action="login" method="POST">
 						<div class="form-group">
 							<input type="text" class="form-control" id="email-modal"
 								name="email" placeholder="email" value="" />
@@ -96,7 +74,7 @@
 								<i class="fa fa-sign-in"></i> Log in
 							</button>
 						</p>
-<!-- 					</form> -->
+					</form>
 
 					<p class="text-center text-muted">Not registered yet?</p>
 					<p class="text-center text-muted">

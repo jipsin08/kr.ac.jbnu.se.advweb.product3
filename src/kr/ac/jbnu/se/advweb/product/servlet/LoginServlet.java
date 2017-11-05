@@ -127,8 +127,15 @@ public class LoginServlet extends HttpServlet {
 				MyUtils.deleteUserCookie(response);
 			}
 
-			// Redirect to userInfo page.
-			response.sendRedirect(request.getContextPath() + "/home");
+//			if(user.getIsAdmin() == "Y") {
+//				// Redirect to userInfo page.
+//				response.sendRedirect(request.getContextPath() + "/admin_home");
+//			}
+//			else {
+////				request.getContextPath() + 
+//				// Redirect to userInfo page.
+//				response.sendRedirect(request.getContextPath() + "/home");
+//			}
 //			RequestDispatcher dispatcher 
 //			= this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
 ////

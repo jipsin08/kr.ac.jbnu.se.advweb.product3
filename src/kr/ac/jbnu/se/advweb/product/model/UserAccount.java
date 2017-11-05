@@ -9,9 +9,10 @@ public class UserAccount {
 	private String gender;
 	private String password;
 	
-	private String id;
-	private String Major;
+	private String id;		//student number
+	private String major;
 	private String email;
+	private String isAdmin;
 	
 
 	public UserAccount() {
@@ -51,11 +52,11 @@ public class UserAccount {
 	}
 	
 	public String getMajor() {
-		return Major;
+		return major;
 	}
 	
 	public void setMajor(String major) {
-		Major = major;
+		this.major = major;
 	}
 	
 	public String getEmail() {
@@ -64,5 +65,13 @@ public class UserAccount {
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 }
