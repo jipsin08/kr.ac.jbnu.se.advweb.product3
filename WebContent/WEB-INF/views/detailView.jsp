@@ -46,6 +46,7 @@
 <body>
 	<jsp:include page="_top.jsp"></jsp:include>
     <jsp:include page="_navbar.jsp"></jsp:include>
+    <jsp:include page="recentProduct.jsp"></jsp:include>
 
     <div id="all">
 
@@ -526,17 +527,6 @@
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
     <script src="resources/js/jquery-1.11.0.min.js"></script>
-    <script>
-    $(document).ready(function() {
-    	$("#cart_btn_id").click(function() {
-    		$.ajax({
-    	    	url: "${pageContext.request.contextPath}/detail",
-    	    	type: "post",
-    	    	data: {product : "${product.code}"}
-    	    });
-    	});
-    });
-	</script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/jquery.cookie.js"></script>
     <script src="resources/js/waypoints.min.js"></script>
@@ -544,8 +534,46 @@
     <script src="resources/js/bootstrap-hover-dropdown.js"></script>
     <script src="resources/js/owl.carousel.min.js"></script>
     <script src="resources/js/front.js"></script>
-
-
+    <script src="resources/js/jquery.session.js"></script>
+    <script>
+    $(document).ready(function() {
+    	var sessionflag = "${sessionflag}";
+    	if(sessionflag == "true") {
+    		$("#cart_btn_id").click(function() {
+        		$.ajax({
+            	    url: "${pageContext.request.contextPath}/detail",
+            	    type: "post",
+            	    data: {product : "${product.code}"}
+            	});
+        	});
+    	} else {
+    		$("#cart_btn_id").removeAttr("data-toggle");
+    		$("#cart_btn_id").removeAttr("data-target");
+    		$("#cart_btn_id").attr("onclick", "location.href='${pageContext.request.contextPath}/user_register'");
+    	}
+    });
+	</script>
+	<script>
+	$(document).ready(function() {
+		if(!!$.cookie("recentProduct")) {
+			var products = $.parseJSON($.cookie("recentProduct"));
+			if(products.length >= 3) {
+				products.sort().reverse();
+				products.pop();
+				products.sort().reverse();
+			}
+			products.push(
+				    { "name" : "${product.name}", "code" : "${product.code}"}
+			);
+			$.cookie("recentProduct", JSON.stringify(products));
+		} else {
+			var products = [
+	 			{"name" : "${product.name}", "code" : "${product.code}"}
+	 		];
+	     	$.cookie("recentProduct", JSON.stringify(products));
+		}	
+    });
+	</script>
 
 </body>
 

@@ -57,91 +57,42 @@
 
 					<ul class="breadcrumb">
 						<li><a href="home">홈</a></li>
-						<li>회원가입 / 로그인</li>
+						<li>회원정보수정</li>
 					</ul>
 
 				</div>
 
 				<div class="col-md-6">
 					<div class="box">
-						<h1>회원가입</h1>
-
-						<p class="lead">아직 SsoGongnawa의 회원이 아니세요?</p>
-						<p>With registration with us new world of fashion, fantastic
-							discounts and much more opens to you! The whole process will not
-							take you more than a minute!</p>
-						<p class="text-muted">
-							If you have any questions, please feel free to <a
-								href="contact.html">contact us</a>, our customer service center
-							is working for you 24/7.
-						</p>
+						<h1>회원정보변경</h1>
 
 						<hr>
 
-						<form id="form_user_register" action="">
+						<form id="form_user_edit" action="" method="post">
 							<div class="form-group">
 								<label for="name">이름</label> <input type="text"
 									class="form-control" id="name" name="name">
 							</div>
 							<div class="form-group">
-								<label for="student_number">학번</label> <input type="text"
-									class="form-control" id="student_number" name="student_number">
-							</div>
-							<div class="form-group">
 								<label for="student_number">전공</label> <input type="text"
 									class="form-control" id="major" name="major">
 							</div>
-							<div class="form-group">
-								<label for="email">이메일</label> <input type="text"
-									class="form-control" id="email" name="email">
-							</div>
+<!-- 							<div class="form-group"> -->
+<!-- 								<label for="email">이메일</label> <input type="text" -->
+<!-- 									class="form-control" id="email" name="email"> -->
+<!-- 							</div> -->
 							<div class="form-group">
 								<label for="password">비밀번호</label> <input type="password"
 									class="form-control" id="password" name="password">
 							</div>
 							<div class="text-center">
-								<button id="register-button" class="btn btn-primary">
-									<i class="fa fa-user-md"></i> Register
+								<button id="edit-button" class="btn btn-primary">
+									<i class="fa fa-user-md"></i> 적용
 								</button>
 							</div>
 						</form>
 					</div>
 				</div>
-
-				<div class="col-md-6">
-					<div class="box">
-						<h1>로그인</h1>
-
-						<p class="lead">계정이 있으신가요?</p>
-						<!--                         <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies -->
-						<!--                             mi vitae est. Mauris placerat eleifend leo.</p> -->
-
-						<hr>
-
-						<!--                         <form action="home"> -->
-						<div class="form-group">
-							<label for="email">이메일</label> <input type="text"
-								class="form-control" id="login-email">
-						</div>
-						<div class="form-group">
-							<label for="password">비밀번호</label> <input type="password"
-								class="form-control" id="login-password">
-						</div>
-						<p class="text-left">
-							<input type="checkbox" id="rememberMe-id" name="rememberMe" />
-							자동로그인
-						</p>
-						<div class="text-center">
-							<button id="login-button" class="btn btn-primary">
-								<i class="fa fa-sign-in"></i> 로그인
-							</button>
-						</div>
-
-						<!--                         </form> -->
-					</div>
-				</div>
-
-
 			</div>
 			<!-- /.container -->
 		</div>
@@ -180,7 +131,7 @@
 			return this.optional(element) ||  /^.*(?=^.{6,15}$)(?=.*\d)(?=.*[a-zA-Z]).*$/.test(value);
 		}); 
 		
-		$("#form_user_register").validate({
+		$("#form_user_edit").validate({
 			debug: true,
 			errorClass: "error",
 			highlight: function(element, errorClass) {
@@ -194,22 +145,13 @@
 					maxlength: 4,
 					kor: true
 				},
-				student_number: {
-					required: true,
-					number: true,
-					rangelength: [9, 9],
-					remote: {
-						url: "${pageContext.request.contextPath}/CheckId",
-						type: "post"
-					}
-				},
 				major: {
 					required: true
 				},
-				email: {
-					required: true,
-					email: true
-				},
+// 				email: {
+// 					required: true,
+// 					email: true
+// 				},
 				password: {
 					required: true,
 					password: true
@@ -221,19 +163,13 @@
 					maxlength: "최대 {0}글자이하여야 합니다.",
 					kor: "자/모음만 있거나 영어가 있으면 안댐"
 				},
-				student_number: {
-					required: "필수 입력사항입니다.",
-					number: "숫자만 가능함",
-					rangelength: "학번은 9자여야 함",
-					remote: "이미 존재하는 학번임"
-				},
 				major: {
 					required: "필수 입력사항입니다."
 				},
-				email: {
-					required: "필수 입력사항입니다.",
-					email: "올바른 형식이 아닙니다."
-				},
+// 				email: {
+// 					required: "필수 입력사항입니다.",
+// 					email: "올바른 형식이 아닙니다."
+// 				},
 				password: {
 					required: "필수 입력사항입니다.",
 					password: "영/숫자 포함 6자 이상이어야 함"
@@ -242,48 +178,8 @@
 			errorClass: "validation-error"
 		});
 		
-		$("#register-button").on('click', function() {
-			if($("#form_user_register").valid()) {
-				$.post('${pageContext.request.contextPath}/user_register', {
-					name : $("#name").val(),
-					id : $("#student_number").val(),
-					major : $("#major").val(),
-					email : $("#email").val(),
-					password : $("#password").val(),
-				}, function(data, status, jqXHR) {
-				// 			        alert( "\nStatus: " + status);
-				// 			        alert( "\nStatus: " + jqXHR.status);
-				}).done(function() {
-					alert("성공!");
-					window.location.replace("${pageContext.request.contextPath}/home");
-				}).fail(function(jqXHR) {
-					alert("실패!");
-					alert("에러메시지" + jqXHR.responseText);
-				}).always(function() {
-				// 					alert("항상!");
-				});
-			} else {
-			}
-		});
-
-		//회원가입 옆에 있는 로그인 화면
-		$("#login-button").on('click', function() {
-			$.post('${pageContext.request.contextPath}/login', {
-				email : $("#login-email").val(),
-				password : $("#login-password").val(),
-				rememberMe : $("#rememberMe-id").is(":checked"),
-			}, function(data, status, jqXHR) {
-			// 			        alert( "\nStatus: " + status);
-			// 			        alert( "\nStatus: " + jqXHR.status);
-			}).done(function() {
-				alert("성공!");
-				window.location.replace("${pageContext.request.contextPath}/home");
-			}).fail(function(jqXHR) {
-				alert("실패!");
-				alert("에러메시지" + jqXHR.responseText);
-			}).always(function() {
-			// 					alert("항상!");
-			});
+		$("#edit-button").on('click', function() {
+			document.getElementById("form_user_edit").submit();
 		});
 	});
 </script>

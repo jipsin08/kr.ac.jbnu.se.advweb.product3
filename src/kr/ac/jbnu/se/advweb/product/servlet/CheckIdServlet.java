@@ -1,33 +1,30 @@
 package kr.ac.jbnu.se.advweb.product.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import kr.ac.jbnu.se.advweb.product.model.Product;
-import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
 /**
- * Servlet implementation class DeleteCartProduct
+ * Servlet implementation class CheckIdServlet
  */
-@WebServlet("/deleteCartProduct")
-public class DeleteCartProduct extends HttpServlet {
+@WebServlet("/CheckId")
+public class CheckIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCartProduct() {
+    public CheckIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,21 +34,7 @@ public class DeleteCartProduct extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Connection conn = MyUtils.getStoredConnection(request);
-		String productCode = request.getParameter("product");
-		
-		HttpSession session = request.getSession();
-		UserAccount loginedUser = MyUtils.getLoginedUser(session);
-		
-		String errorString = null;
-		try {
-			DBUtils.deleteCart(conn, loginedUser.getId(), productCode);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			errorString = e.getMessage();
-		}
-		
-		response.sendRedirect(request.getContextPath() + "/basket");
+		doPost(request, response);
 	}
 
 	/**
@@ -59,7 +42,19 @@ public class DeleteCartProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		Connection conn = MyUtils.getStoredConnection(request);
+		
+		String userid = request.getParameter("student_number");
+		PrintWriter out = response.getWriter();
+		try {
+			if(DBUtils.checkUserAccount(conn, userid)) {
+				out.println("false");
+			} else {
+				out.println("true");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -167,8 +167,8 @@ public class DBUtils {
 		return list;
 	}
 
-	public static List<Product> queryCart(Connection conn, String userName) throws SQLException {
-		String sql = "Select cart_item from cart where cart_user='" + userName + "'";
+	public static List<Product> queryCart(Connection conn, String userid) throws SQLException {
+		String sql = "Select cart_item from cart where cart_user='" + userid + "'";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -183,11 +183,11 @@ public class DBUtils {
 		return list;
 	}
 
-	public static void insertCart(Connection conn, String userName, String code) throws SQLException {
+	public static void insertCart(Connection conn, String userid, String code) throws SQLException {
 		String sql = "select * from cart where cart_user=? and cart_item=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, userName);
+		pstm.setString(1, userid);
 		pstm.setString(2, code);
 
 		ResultSet rs = pstm.executeQuery();
@@ -197,7 +197,7 @@ public class DBUtils {
 
 			pstm = conn.prepareStatement(sql);
 
-			pstm.setString(1, userName);
+			pstm.setString(1, userid);
 			pstm.setString(2, code);
 
 			pstm.executeUpdate();
@@ -312,5 +312,31 @@ public class DBUtils {
 			list.add(user);
 		}
 		return list;
+	}
+
+	public static boolean checkUserAccount(Connection conn, String userid) throws SQLException {
+		String sql = "Select * from user_account where user_id=?";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, userid);
+
+		ResultSet rs = pstm.executeQuery();
+
+		if(rs.next())
+			return true;
+		else
+			return false;
+	}
+	
+	public static void updateUserAccount(Connection conn, UserAccount userAccount) throws SQLException {
+		String sql = "Update user_account set user_major=?, user_name=?, user_password=? where user_id=? ";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, userAccount.getMajor());
+		pstm.setString(2, userAccount.getUserName());
+		pstm.setString(3, userAccount.getPassword());
+		pstm.setString(4, userAccount.getId());
+		pstm.executeUpdate();
 	}
 }
