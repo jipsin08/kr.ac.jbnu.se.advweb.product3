@@ -129,7 +129,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 			if(user.isAdmin()) {
-//				response.sendRedirect(request.getContextPath() + "/user_register");
+				response.sendRedirect(request.getContextPath() + "/admin_home");
 				//가고싶은 페이지로 Redirect 하면 됨
 				return;
 			} else {

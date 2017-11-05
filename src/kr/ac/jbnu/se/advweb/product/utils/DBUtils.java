@@ -31,6 +31,7 @@ public class DBUtils {
 			String id = rs.getString("user_id");
 			String major = rs.getString("user_major");
 			String name = rs.getString("user_name");
+
 			boolean isAdmin = rs.getString("Is_Admin").equals("Y");
 			
 			UserAccount user = new UserAccount();
@@ -290,5 +291,26 @@ public class DBUtils {
 		pstm.setString(4, board.getContents());
 
 		pstm.executeUpdate();
+}
+	public static List<UserAccount> queryUserAccount(Connection conn) throws SQLException {
+		String sql = "Select * from user_account";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+		List<UserAccount> list = new ArrayList<UserAccount>();
+		while (rs.next()) {
+			String id = rs.getString("user_id");
+			String major = rs.getString("user_major");
+			String name = rs.getString("user_name");
+			String email= rs.getString("user_email");
+			UserAccount user = new UserAccount();
+			user.setId(id);
+			user.setMajor(major);
+			user.setUserName(name);
+			user.setEmail(email);
+			list.add(user);
+		}
+		return list;
 	}
 }
