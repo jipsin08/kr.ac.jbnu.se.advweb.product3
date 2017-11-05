@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +39,7 @@
 	<jsp:include page="_top.jsp"></jsp:include>
 	<jsp:include page="_navbar.jsp"></jsp:include>
 
-
 	<div id="all">
-	
 		<div id="content">
 			<div class="container">
 
@@ -49,83 +49,62 @@
 						<li><a href="board">글 목록 보기</a></li>
 					</ul>
 
-<!-- 					<div class="row" id="error-page"> -->
-						<div class="col-md-12">
-							<div class="box" style="margin-bottom: 20px">
-								<p>${board.contents}</p>
-							</div>
+					<!-- 					<div class="row" id="error-page"> -->
+					<div class="col-md-12">
+						<div class="box" style="margin-bottom: 20px">
+							<p>${board.contents}</p>
+						</div>
 
-							<div class="box" style="margin-bottom: 20px">
-								<div id="comment-form" data-animate="fadeInUp">
-									<form>
-										<div class="row">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<textarea class="form-control" id="comment" rows="2" placeholder="댓글을 입력해주세요."></textarea>
-												</div>
+						<div class="box" style="margin-bottom: 20px">
+							<div data-animate="fadeInUp">
+								<form id="comment-form" method="post">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<textarea class="form-control" id="comment" rows="2" placeholder="댓글을 입력해주세요."></textarea>
 											</div>
 										</div>
+									</div>
 
-										<div class="row">
-											<div class="col-sm-12 text-right">
-												<button class="btn btn-primary">
-													<i class="fa fa-comment-o"></i> 댓글 남기기
-												</button>
-											</div>
+									<div class="row">
+										<div class="col-sm-12 text-right">
+											<button id="comment-post-button" class="btn btn-primary">
+												<i class="fa fa-comment-o"></i> 댓글 남기기
+											</button>
 										</div>
-									</form>
-								</div>
-								<!-- /#comment-form -->
-
+									</div>
+								</form>
 							</div>
-							<div class="box">
-								<div id="comments" data-animate="fadeInUp">
-									<h4>2개의 댓글이 있습니다.</h4>
+							<!-- /#comment-form -->
 
+						</div>
+						<div class="box">
+							<div id="comments" data-animate="fadeInUp">
+								<h4>${fn:length(commentList)}개의댓글이있습니다.</h4>
+								<c:forEach items="${commentList}" var="comment">
 									<div class="row comment">
-										<div class="col-sm-3 col-md-2 text-center-xs">
+										<div class="col-sm-3 col-md-1 text-center-xs">
 											<p>
 												<!--                                         <img src="img/blog-avatar2.jpg" class="img-responsive img-circle" alt=""> -->
 											</p>
 										</div>
-										<div class="col-sm-9 col-md-10">
-											<h5>Julie Alma</h5>
+										<div class="col-sm-9 col-md-11">
+											<h5>${comment.author}</h5>
 											<p class="posted">
-												<i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am
+												<i class="fa fa-clock-o"></i> ${comment.date}
 											</p>
-											<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+											<p>${comment.contents}</p>
 										</div>
 									</div>
-									<!-- /.comment -->
-
-
-									<div class="row comment last">
-
-										<div class="col-sm-3 col-md-2 text-center-xs">
-											<p>
-												<!--                                         <img src="img/blog-avatar.jpg" class="img-responsive img-circle" alt=""> -->
-											</p>
-										</div>
-
-										<div class="col-sm-9 col-md-10">
-											<h5>Louise Armero</h5>
-											<p class="posted">
-												<i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am
-											</p>
-											<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-										</div>
-
-									</div>
-									<!-- /.comment -->
-
-								</div>
-								<!-- /#comments -->
-
+								</c:forEach>
 							</div>
+							<!-- /#comments -->
+
 						</div>
 					</div>
+				</div>
 
-<!-- 				</div> -->
+				<!-- 				</div> -->
 				<!-- /.col-md-9 -->
 			</div>
 			<!-- /.container -->
@@ -280,6 +259,34 @@
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/front.js"></script>
 	<script src="resources/js/respond.min.js"></script>
-	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var board_id = '${board.id}';
+
+			$("#comment-form").on('submit', function() {
+				var dt = new Date();
+				var datetime = dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
+				$.post('${pageContext.request.contextPath}/create_comment', {
+					date : datetime,
+					contents : $("#comment").val(),
+					board_id : board_id
+				}, function(data, status, jqXHR) {
+				// 			        alert( "\nStatus: " + status);
+				// 					alert("\nStatus: " + jqXHR.status);
+				}).done(function(data, status, jqXHR) {
+					window.location.replace("${pageContext.request.contextPath}/board_detail?board_id=" + board_id);
+					//  				window.location.replace("${pageContext.request.contextPath}/board");
+				}).fail(function(jqXHR) {
+					alert("로그인 후 댓글 작성이 가능합니다.");
+					window.location.replace("${pageContext.request.contextPath}/user_register");
+					// 					alert("실패!");
+					// 					alert("에러메시지" + jqXHR.responseText);
+				}).always(function() {
+				// 				 					alert("항상!");
+				});
+			});
+		});
+	</script>
 </body>
 </html>
