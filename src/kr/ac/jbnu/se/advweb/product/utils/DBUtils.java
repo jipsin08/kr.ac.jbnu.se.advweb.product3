@@ -32,7 +32,12 @@ public class DBUtils {
 			String major = rs.getString("user_major");
 			String name = rs.getString("user_name");
 
-			boolean isAdmin = rs.getString("Is_Admin").equals("Y");
+			boolean isAdmin;
+			if(rs.getString("IS_Admin") == null) {
+				isAdmin = false;
+			} else {
+				isAdmin = true;
+			}
 			
 			UserAccount user = new UserAccount();
 			user.setId(id);
