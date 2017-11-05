@@ -12,6 +12,9 @@
                 </li>
                 <li><a href="user_register">Register</a>
                 </li>
+                </li>
+                <li><a href="createProduct">CreateProduct</a>
+                </li>
                 <li><a href="contact.html">Contact</a>
                 </li>
                 <li><a href="#">Recently viewed</a>

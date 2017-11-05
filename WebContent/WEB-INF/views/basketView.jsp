@@ -14,7 +14,7 @@
     <meta name="keywords" content="">
 
     <title>
-    	소공나와
+    	쏘공나와
     </title>
 
     <meta name="keywords" content="">
