@@ -288,17 +288,13 @@ _________________________________________________________ -->
 
         <div class="collapse clearfix" id="search">
 
-            <form class="navbar-form" role="search">
+			<div class="col-md-6 offer"></div>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" id="search_input_id">
                     <span class="input-group-btn">
-
-		<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-
-	    </span>
+						<button id="search_btn_id" onclick="" class="btn btn-primary"><i class="fa fa-search"></i></button>
+	    			</span>
                 </div>
-            </form>
-
         </div>
         <!--/.nav-collapse -->
 
@@ -308,3 +304,11 @@ _________________________________________________________ -->
 <!-- /#navbar -->
 
 <!-- *** NAVBAR END *** -->
+<script src="resources/js/jquery-1.11.0.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#search_btn_id").click(function() {
+		window.location.replace("${pageContext.request.contextPath}/home?keyword=" + $("#search_input_id").val());
+	});
+});
+</script>

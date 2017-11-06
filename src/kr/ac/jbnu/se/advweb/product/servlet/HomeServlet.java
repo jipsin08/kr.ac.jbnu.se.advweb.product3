@@ -30,10 +30,19 @@ public class HomeServlet extends HttpServlet {
 		
 		Connection conn = MyUtils.getStoredConnection(request);
 		
+		String keyword = null;
+		
+		if (request.getParameterMap().containsKey("keyword")) {
+            keyword = request.getParameter("keyword");
+            System.out.println(keyword);
+        }
 		String errorString = null;
 		List<Product> list = null;
 		try {
-			list = DBUtils.queryProduct(conn);
+			if(keyword != null)
+				list = DBUtils.querySearchedProduct(conn, keyword);
+			else
+				list = DBUtils.queryProduct(conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();

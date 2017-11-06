@@ -226,6 +226,40 @@ public class DBUtils {
 		}
 		return list;
 	}
+	
+	public static List<Product> querySearchedProduct(Connection conn, String keyword) throws SQLException {
+		String sql = "Select a.Code, a.Name, a.Price, a.Brand, a.CPU, a.GraphicCard, a.Description, a.Image from Product a where a.Name like '%" + keyword + "%'";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+//		pstm.setString(1, keyword);
+
+		ResultSet rs = pstm.executeQuery();
+
+		List<Product> list = new ArrayList<Product>();
+		while (rs.next()) {
+			String code = rs.getString("Code");
+			String name = rs.getString("Name");
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("Cpu");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			String image = rs.getString("image");
+			
+			Product product = new Product();
+			product.setCode(code);
+			product.setName(name);
+			product.setPrice(price);
+			product.setBrand(brand);
+			product.setCpu(cpu);
+			product.setGraphicCard(graphicCard);
+			product.setDescription(description);
+			product.setImage(image);
+			
+			list.add(product);
+		}
+		return list;
+	}
 
 	public static List<Product> queryCart(Connection conn, String userid) throws SQLException {
 		String sql = "Select cart_item from cart where cart_user='" + userid + "'";
