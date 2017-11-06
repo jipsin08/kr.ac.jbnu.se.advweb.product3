@@ -52,6 +52,16 @@
 					<!-- 					<div class="row" id="error-page"> -->
 					<div class="col-md-12">
 						<div class="box" style="margin-bottom: 20px">
+							<div class="row">
+								<div class="col-md-8">
+									<h2>${board.title}</h2>
+								</div>
+								<div class="col-md-4">
+									<h5>글쓴이 : ${board.author}</h5>
+									<h5>날짜 : ${board.date}</h5>
+								</div>
+							</div>
+							<hr />
 							<p>${board.contents}</p>
 						</div>
 
@@ -121,8 +131,7 @@
 					<h4>Pages</h4>
 
 					<ul>
-						<li><a href="text.html">About us</a>
-						<li><a href="text.html">Terms and conditions</a></li>
+						<li><a href="text.html">About us</a> <li><a href="text.html">Terms and conditions</a></li>
 						<li><a href="faq.html">FAQ</a></li>
 						<li><a href="contact.html">Contact us</a></li>
 					</ul>
@@ -287,6 +296,4 @@
 				});
 			});
 		});
-	</script>
-</body>
-</html>
+	</script></ body></html>

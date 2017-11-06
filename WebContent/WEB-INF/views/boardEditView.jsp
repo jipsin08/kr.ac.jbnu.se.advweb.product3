@@ -63,7 +63,7 @@
 								</div>
 								<textarea class="ck-editor__editable" name="content" id="editor">
 							    </textarea>
-								<a id="post-button" href="#" class="btn btn-default">글쓰기</a>
+								<a id="post-button" href="#" style="margin-top:20px;" class="btn btn-primary">글쓰기</a>
 							</div>
 						</div>
 					</div>
@@ -229,17 +229,6 @@
 	<script src="resources/ckeditor/ckeditor.js"></script>
 
 	<script>
-		var myEditor;
-	
-// 	    ClassicEditor
-// 	        .create( document.querySelector( '#editor' ) )
-// 	        .then( editor => {
-//         		console.log( editor );
-//         		myEditor = editor;
-//     		} )
-// 	        .catch( error => {
-// 	            console.error( error );
-// 	        } );
  		CKEDITOR.replace('editor');
     </script>
 
@@ -271,7 +260,7 @@
 			// 			        alert( "\nStatus: " + status);
 			// 			        alert( "\nStatus: " + jqXHR.status);
 			}).done(function() {
-				alert("성공!");
+				alert("글 등록이 완료되었습니다.");
  				window.location.replace("${pageContext.request.contextPath}/board");
 			}).fail(function(jqXHR) {
 				alert("실패!");

@@ -78,16 +78,16 @@
 								</table>
 
 								<hr />
-								<a href="board_edit" class="btn btn-default pull-right">글쓰기</a>
+								<a href="board_edit" class="btn btn-primary pull-right">글쓰기</a>
 
 
 								<div class="text-center">
 									<ul class="pagination">
 										<li><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
+<!-- 										<li><a href="#">2</a></li> -->
+<!-- 										<li><a href="#">3</a></li> -->
+<!-- 										<li><a href="#">4</a></li> -->
+<!-- 										<li><a href="#">5</a></li> -->
 									</ul>
 
 								</div>
