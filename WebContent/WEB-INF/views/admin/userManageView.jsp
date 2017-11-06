@@ -109,6 +109,9 @@
 										<th>전공</th>
 										<th>이름</th>
 										<th>이메일</th>
+										<th>Edit</th>
+										<th>Block</th>
+										<th>IS BLOCKED</th>
 									</tr>
 								</thead>
 									<c:forEach items="${userlist}" var="user">
@@ -118,7 +121,8 @@
 											<td>${user.userName}</td>
 											<td>${user.email}</td>
 											<td><a href="editUserAccount?id=${user.id}">Edit</a></td>
-											<td><a href="deleteUserAccout?id=${user.id}"><i class="fa fa-trash-o"></i></a></td>
+											<td><a href="blockUserAccout?id=${user.id}"><i class="fa fa-trash-o"></i></a></td>
+											<td>${user.isBlocked}</td>
 										</tr>
 									</c:forEach>
 							</table>
