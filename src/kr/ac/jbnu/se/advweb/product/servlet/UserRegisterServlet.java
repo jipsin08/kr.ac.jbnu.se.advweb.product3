@@ -51,14 +51,18 @@ public class UserRegisterServlet extends HttpServlet {
 		UserAccount user = new UserAccount();
 //-----------------------		
 		try {
-			user = DBUtils.findBlockedUser(conn, email);
+			if(DBUtils.isBlockedUser(conn, email)) {
+				errorString = "정지당한 계정입니다.";
+				response.setStatus(response.SC_FORBIDDEN);
+				return;
+			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println(user.getBlocked());
-		if (user.getBlocked() != null) {
-			errorString = "당신의 계정은 정지당했습니다.";
-		}
+//		System.out.println(user.getBlocked());
+//		if (user.getBlocked() != null) {
+//			errorString = "당신의 계정은 정지당했습니다.";
+//		}
 //--------------------------------		
 		user.setId(id);
 		user.setUserName(name);

@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 		
 		// Not logged in
 		if (loginedUser == null) {
-			System.out.println("세션없지롱");
+//			System.out.println("세션없지롱");
 			// Redirect to login page.
 //			response.sendRedirect(request.getContextPath() + "/user_register");
 //			response.sendRedirect("http://www.naver.com");
@@ -45,9 +45,9 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 		
-		System.out.println("세션있지롱");
+//		System.out.println("세션있지롱");
 		response.getWriter().write("logged in");
-
+		
 		return;
 		// Forward to /WEB-INF/views/loginView.jsp
 		// (Users can not access directly into JSP pages placed in WEB-INF)
@@ -79,7 +79,18 @@ public class LoginServlet extends HttpServlet {
 			errorString = "Required username and password!";
 		} else {
 			Connection conn = MyUtils.getStoredConnection(request);
+			
 			try {
+				//블락당한 계정인지 확인
+				if(DBUtils.isBlockedUser(conn, email)) {
+					errorString = "정지당한 계정입니다.";
+					response.setContentType("text/plain");
+					response.getWriter().write("isBlocked");
+					System.out.println("??");
+//					response.sendRedirect(request.getContextPath() + "/home");
+					return;
+				}
+				
 				// Find the user in the DB.
 				user = DBUtils.findUser(conn, email, password);
 
@@ -95,6 +106,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		// If error, forward to /WEB-INF/views/login.jsp
 		if (hasError) {
+			System.out.println("??????");
+			System.out.println(errorString);
 			//
 //			user = new UserAccount();
 //			user.setUserName(email);
@@ -128,12 +141,16 @@ public class LoginServlet extends HttpServlet {
 				MyUtils.deleteUserCookie(response);
 			}
 			
+			response.setContentType("text/plain");
+
 			if(user.isAdmin()) {
-				response.sendRedirect(request.getContextPath() + "/admin_home");
+				response.getWriter().write("isAdmin");
+//				response.sendRedirect(request.getContextPath() + "/admin_home");
 				//가고싶은 페이지로 Redirect 하면 됨
 				return;
 			} else {
-				response.sendRedirect(request.getContextPath() + "/home");
+//				response.sendRedirect(request.getContextPath() + "/home");
+				response.getWriter().write("isNotAdmin");
 				return;
 			}
 

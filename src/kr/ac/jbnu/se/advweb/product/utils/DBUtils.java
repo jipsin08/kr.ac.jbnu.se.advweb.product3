@@ -34,12 +34,12 @@ public class DBUtils {
 			String name = rs.getString("user_name");
 
 			boolean isAdmin;
-			if(rs.getString("IS_Admin") == null) {
+			if (rs.getString("IS_Admin") == null || rs.getString("IS_Admin").isEmpty()) {
 				isAdmin = false;
 			} else {
 				isAdmin = true;
 			}
-			
+
 			UserAccount user = new UserAccount();
 			user.setId(id);
 			user.setMajor(major);
@@ -52,7 +52,7 @@ public class DBUtils {
 		}
 		return null;
 	}
-	
+
 	public static UserAccount findUser(Connection conn, String userName) throws SQLException {
 
 		String sql = "Select * from user_account a where a.user_name = ? ";
@@ -81,48 +81,35 @@ public class DBUtils {
 		}
 		return null;
 	}
-	
-	public static UserAccount findBlockedUser(Connection conn, //
-			String userEmail) throws SQLException {
 
-		String sql = "Select * from user_account a where a.user_email = ?";
+	public static boolean isBlockedUser(Connection conn, String userEmail) throws SQLException {
+
+		String sql = "Select * from user_account where user_email = ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, userEmail);
 		ResultSet rs = pstm.executeQuery();
 
 		if (rs.next()) {
-			String isBlocked = rs.getString("Is_Blocked");
-			
-			UserAccount user = new UserAccount();
-			user.setBlocked(isBlocked);
-			
-			return user;
+			if (rs.getString("Is_Blocked") == null || rs.getString("Is_Blocked").isEmpty()) {
+				return false;
+			} else {
+				return true;
+			}
 		}
-		return null;
+		
+		return false;
 	}
 
-	public static void blockUserAccount(Connection conn, //
-			String userId) throws SQLException {
-
-		String sql = "Select * from user_account a where a.user_id = ?";
+	public static void blockUserAccount(Connection conn, String userId) throws SQLException {
+		String sql = "Update user_account set Is_Blocked=? where user_id=? ";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, userId);
-		ResultSet rs = pstm.executeQuery();
-
-		if (rs.next()) {
-			String isBlocked = rs.getString("Is_Blocked");
-			
-			if(isBlocked == null) {
-				isBlocked = "Y";
-			}
-			UserAccount user = new UserAccount();
-			user.setBlocked(isBlocked);
-		}
-		//return null;
+		pstm.setString(1, "Y");
+		pstm.setString(2, userId);
+		pstm.executeUpdate();
 	}
-	
+
 	public static List<Board> queryBoard(Connection conn) throws SQLException {
 		String sql = "Select * from board";
 
@@ -225,7 +212,7 @@ public class DBUtils {
 	public static void addComment(Connection conn, Comment comment) throws SQLException {
 		String sql = "INSERT INTO comment(comment_author, comment_date, comment_contents, board_id)"
 				+ "VALUES (?,?,?,?)";
-		
+
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
 		pstm.setString(1, comment.getAuthor());
@@ -252,7 +239,7 @@ public class DBUtils {
 			String graphicCard = rs.getString("GraphicCard");
 			String description = rs.getString("Description");
 			String image = rs.getString("image");
-			
+
 			Product product = new Product();
 			product.setCode(code);
 			product.setName(name);
@@ -262,7 +249,7 @@ public class DBUtils {
 			product.setGraphicCard(graphicCard);
 			product.setDescription(description);
 			product.setImage(image);
-			
+
 			list.add(product);
 		}
 		return list;
@@ -366,7 +353,6 @@ public class DBUtils {
 		pstm.setString(6, product.getDescription());
 		pstm.setString(7, product.getImage());
 
-
 		pstm.executeUpdate();
 	}
 
@@ -414,12 +400,28 @@ public class DBUtils {
 
 		ResultSet rs = pstm.executeQuery();
 		List<UserAccount> list = new ArrayList<UserAccount>();
+
 		while (rs.next()) {
 			String id = rs.getString("user_id");
 			String major = rs.getString("user_major");
 			String name = rs.getString("user_name");
 			String email = rs.getString("user_email");
-			String isBlocked = rs.getString("Is_Blocked");
+
+			boolean isAdmin;
+
+			if (rs.getString("Is_Admin") == null || rs.getString("Is_Admin").isEmpty()) {
+				isAdmin = false;
+			} else {
+				isAdmin = true;
+			}
+
+			String isBlocked;
+
+			if (rs.getString("Is_Blocked") == null || rs.getString("Is_Blocked").isEmpty()) {
+				isBlocked = "";
+			} else {
+				isBlocked = "Y";
+			}
 
 			UserAccount user = new UserAccount();
 			user.setId(id);
@@ -427,7 +429,12 @@ public class DBUtils {
 			user.setUserName(name);
 			user.setEmail(email);
 			user.setBlocked(isBlocked);
-			System.out.println("Rbnn"+user.getBlocked());
+			user.setAdmin(isAdmin);
+
+			if (user.isAdmin()) {
+				continue;
+			}
+
 			list.add(user);
 		}
 		return list;
@@ -441,12 +448,12 @@ public class DBUtils {
 
 		ResultSet rs = pstm.executeQuery();
 
-		if(rs.next())
+		if (rs.next())
 			return true;
 		else
 			return false;
 	}
-	
+
 	public static void updateUserAccount(Connection conn, UserAccount userAccount) throws SQLException {
 		String sql = "Update user_account set user_major=?, user_name=?, user_password=? where user_id=? ";
 

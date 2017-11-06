@@ -10,7 +10,7 @@ public class UserAccount {
 	private String email;
 
 	private boolean isAdmin;
-	private String isBlocked;
+	private String blocked;
 	
 	public UserAccount() {
 
@@ -63,13 +63,12 @@ public class UserAccount {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
+
 	public String getBlocked() {
-		return isBlocked;
+		return blocked;
 	}
 
-	public void setBlocked(String isBlocked) {
-		this.isBlocked = isBlocked;
+	public void setBlocked(String blocked) {
+		this.blocked = blocked;
 	}
-	
 }
