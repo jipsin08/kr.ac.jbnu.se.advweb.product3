@@ -105,7 +105,7 @@ public class DBUtils {
 	public static void blockUserAccount(Connection conn, //
 			String userId) throws SQLException {
 
-		String sql = "Select * from user_account a where a.user_email = ?";
+		String sql = "Select * from user_account a where a.user_id = ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, userId);
@@ -427,6 +427,7 @@ public class DBUtils {
 			user.setUserName(name);
 			user.setEmail(email);
 			user.setBlocked(isBlocked);
+			System.out.println("Rbnn"+user.getBlocked());
 			list.add(user);
 		}
 		return list;
