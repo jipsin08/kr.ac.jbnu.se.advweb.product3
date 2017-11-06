@@ -46,12 +46,7 @@
 					<p class="lead">
 						팔고 싶은 노트북을 등록해보세요!
 					</p>
-					<p>
-						With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!
-					</p>
-					<p class="text-muted">
-						 If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.
-					</p>
+				
 					<hr>
 					
 					<form action="createProduct" enctype="multipart/form-data" method="post" accept-charset="UTF-8">
