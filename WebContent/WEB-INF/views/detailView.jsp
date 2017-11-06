@@ -56,11 +56,9 @@
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="#">홈</a>
                         </li>
-                        <li><a href="#">Ladies</a>
-                        </li>
-                        <li><a href="#">Tops</a>
+                        <li><a href="#">제품</a>
                         </li>
                         <li>${product.name}</li>
                     </ul>
@@ -294,7 +292,13 @@
 
                     <div class="box" id="details">
                         <p>
-                            <h4>Product details</h4>
+                        	<h4>브랜드</h4>
+                            <p>${product.brand}</p>
+                        	<h4>CPU</h4>
+                            <p>${product.cpu}</p>
+                            <h4>그래픽 카드</h4>
+                            <p>${product.graphicCard}</p>
+                            <h4>제품 설명</h4>
                             <p>${product.description}</p>
 <!--                             <h4>Material & care</h4> -->
 <!--                             <ul> -->

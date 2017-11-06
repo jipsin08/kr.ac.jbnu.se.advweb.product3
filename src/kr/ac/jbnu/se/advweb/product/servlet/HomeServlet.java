@@ -31,16 +31,44 @@ public class HomeServlet extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
 		
 		String keyword = null;
-		
+		String minprice = null;
+		String maxprice = null;
+		String brand = null;
+		String cpu = null;
+		String graphic = null;
+
 		if (request.getParameterMap().containsKey("keyword")) {
             keyword = request.getParameter("keyword");
-            System.out.println(keyword);
         }
+		if(request.getParameterMap().containsKey("minprice")) {
+        	minprice = request.getParameter("minprice");
+        }
+		if(request.getParameterMap().containsKey("maxprice")) {
+        	maxprice = request.getParameter("maxprice");
+        }
+		if(request.getParameterMap().containsKey("brand")) {
+        	brand = request.getParameter("brand");
+        }
+		if(request.getParameterMap().containsKey("cpu")) {
+        	cpu = request.getParameter("cpu");
+        }
+		if(request.getParameterMap().containsKey("graphic")) {
+        	graphic = request.getParameter("graphic");
+        }
+
 		String errorString = null;
 		List<Product> list = null;
 		try {
 			if(keyword != null)
 				list = DBUtils.querySearchedProduct(conn, keyword);
+			else if(minprice != null)
+				list = DBUtils.queryPriceSearchedProduct(conn, minprice, maxprice);
+			else if(brand != null)
+				list = DBUtils.queryBrandSearchedProduct(conn, brand);
+			else if(cpu != null)
+				list = DBUtils.queryCpuSearchedProduct(conn, cpu);
+			else if(graphic != null)
+				list = DBUtils.queryGraphicSearchedProduct(conn, graphic);
 			else
 				list = DBUtils.queryProduct(conn);
 		} catch (SQLException e) {
