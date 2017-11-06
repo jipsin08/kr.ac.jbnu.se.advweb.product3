@@ -34,73 +34,44 @@ _________________________________________________________ -->
                 <li class="active"><a href="${pageContext.request.contextPath}/">홈</a>
                 </li>
                 <li class="dropdown yamm-fw">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">남성용 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="yamm-content">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5>Clothing</h5>
-                                        <ul>
-                                            <li><a href="category.html">T-shirts</a>
-                                            </li>
-                                            <li><a href="category.html">Shirts</a>
-                                            </li>
-                                            <li><a href="category.html">Pants</a>
-                                            </li>
-                                            <li><a href="category.html">Accessories</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Shoes</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                            <li><a href="category.html">Casual</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Accessories</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                            <li><a href="category.html">Casual</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                            <li><a href="category.html">Casual</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Featured</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                        </ul>
-                                        <h5>Looks and trends</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                        </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" 	data-hover="dropdown" data-delay="200">카테고리 <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li>
+							<div class="yamm-content">
+								<div class="row">
+									<div class="col-sm-3">
+										<h5>가격대별</h5>
+										<ul>
+											<li><a href="${pageContext.request.contextPath}/home?minprice=0&maxprice=200000">20만원 이하</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?minprice=200000&maxprice=400000">20만원~40만원</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?minprice=400000&maxprice=600000">40만원~60만원</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?minprice=600000&maxprice=100000000">60만원 이상</a></li>
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<h5>브랜드별</h5>
+										<ul>
+											<li><a href="${pageContext.request.contextPath}/home?brand=samsung">삼성</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?brand=lg">LG</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?brand=asus">ASUS</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?brand=dell">DELL</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?brand=others">기타</a></li>
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<h5>CPU</h5>
+										<ul>
+											<li><a href="${pageContext.request.contextPath}/home?cpu=i3">i3</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?cpu=i5">i5</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?cpu=i7">i7</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?cpu=others">기타</a></li>
+										</ul>
+										<h5>그래픽카드</h5>
+										<ul>
+											<li><a href="${pageContext.request.contextPath}/home?graphic=amd">AMD</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?graphic=엔비디아">엔비디아</a></li>
+											<li><a href="${pageContext.request.contextPath}/home?graphic=인텔">인텔</a></li>
+										</ul>
                                     </div>
                                 </div>
                             </div>
@@ -288,17 +259,13 @@ _________________________________________________________ -->
 
         <div class="collapse clearfix" id="search">
 
-            <form class="navbar-form" role="search">
+			<div class="col-md-6 offer"></div>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" id="search_input_id">
                     <span class="input-group-btn">
-
-		<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-
-	    </span>
+						<button id="search_btn_id" onclick="" class="btn btn-primary"><i class="fa fa-search"></i></button>
+	    			</span>
                 </div>
-            </form>
-
         </div>
         <!--/.nav-collapse -->
 
@@ -308,3 +275,11 @@ _________________________________________________________ -->
 <!-- /#navbar -->
 
 <!-- *** NAVBAR END *** -->
+<script src="resources/js/jquery-1.11.0.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#search_btn_id").click(function() {
+		window.location.replace("${pageContext.request.contextPath}/home?keyword=" + $("#search_input_id").val());
+	});
+});
+</script>

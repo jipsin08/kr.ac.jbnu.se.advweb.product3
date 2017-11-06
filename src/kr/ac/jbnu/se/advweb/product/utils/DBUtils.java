@@ -254,6 +254,188 @@ public class DBUtils {
 		}
 		return list;
 	}
+	
+	public static List<Product> querySearchedProduct(Connection conn, String keyword) throws SQLException {
+		String sql = "Select * from Product a where a.Name like '%" + keyword + "%'";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+//		pstm.setString(1, keyword);
+
+		ResultSet rs = pstm.executeQuery();
+
+		List<Product> list = new ArrayList<Product>();
+		while (rs.next()) {
+			String code = rs.getString("Code");
+			String name = rs.getString("Name");
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("Cpu");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			String image = rs.getString("image");
+			
+			Product product = new Product();
+			product.setCode(code);
+			product.setName(name);
+			product.setPrice(price);
+			product.setBrand(brand);
+			product.setCpu(cpu);
+			product.setGraphicCard(graphicCard);
+			product.setDescription(description);
+			product.setImage(image);
+			
+			list.add(product);
+		}
+		return list;
+	}
+	
+	public static List<Product> queryPriceSearchedProduct(Connection conn, String minprice, String maxprice) throws SQLException {
+		String sql = "Select * from Product a where a.Price >= " + minprice + " and a.Price <=" + maxprice;
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+
+		List<Product> list = new ArrayList<Product>();
+		while (rs.next()) {
+			String code = rs.getString("Code");
+			String name = rs.getString("Name");
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("Cpu");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			String image = rs.getString("image");
+			
+			Product product = new Product();
+			product.setCode(code);
+			product.setName(name);
+			product.setPrice(price);
+			product.setBrand(brand);
+			product.setCpu(cpu);
+			product.setGraphicCard(graphicCard);
+			product.setDescription(description);
+			product.setImage(image);
+			
+			list.add(product);
+		}
+		return list;
+	}
+	
+	public static List<Product> queryBrandSearchedProduct(Connection conn, String _brand) throws SQLException {
+		String sql = null;
+		if(_brand.equals("others")) {
+			sql = "Select * from Product a where a.Brand<>'samsung' and a.Brand<>'dell' and a.Brand<>'lg' and a.Brand<>'asus'";
+		} else {
+			sql = "Select * from Product a where a.Brand='" + _brand + "'";
+		}
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+
+		List<Product> list = new ArrayList<Product>();
+		while (rs.next()) {
+			String code = rs.getString("Code");
+			String name = rs.getString("Name");
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("Cpu");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			String image = rs.getString("image");
+			
+			Product product = new Product();
+			product.setCode(code);
+			product.setName(name);
+			product.setPrice(price);
+			product.setBrand(brand);
+			product.setCpu(cpu);
+			product.setGraphicCard(graphicCard);
+			product.setDescription(description);
+			product.setImage(image);
+			
+			list.add(product);
+		}
+		return list;
+	}
+	
+	public static List<Product> queryCpuSearchedProduct(Connection conn, String _cpu) throws SQLException {
+		String sql = null;
+		if(_cpu.equals("others")) {
+			sql = "Select * from Product a where a.Cpu not like '%i3%' and a.Cpu not like '%i5%' and a.Cpu not like '%i7%'";
+		} else {
+			sql = "Select * from Product a where a.Cpu like '%" + _cpu + "%'";
+		}
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+
+		List<Product> list = new ArrayList<Product>();
+		while (rs.next()) {
+			String code = rs.getString("Code");
+			String name = rs.getString("Name");
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("Cpu");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			String image = rs.getString("image");
+			
+			Product product = new Product();
+			product.setCode(code);
+			product.setName(name);
+			product.setPrice(price);
+			product.setBrand(brand);
+			product.setCpu(cpu);
+			product.setGraphicCard(graphicCard);
+			product.setDescription(description);
+			product.setImage(image);
+			
+			list.add(product);
+		}
+		return list;
+	}
+	
+	public static List<Product> queryGraphicSearchedProduct(Connection conn, String graphic) throws SQLException {
+		String sql = null;
+		
+		if(graphic.equals("amd")) {
+			sql = "Select * from Product a where a.GraphicCard like '%라데온%'";
+		}
+		if(graphic.equals("엔비디아")) {
+			sql = "Select * from Product a where a.GraphicCard like '%지포스%'";
+		}
+		if(graphic.equals("인텔")) {
+			sql = "Select * from Product a where a.GraphicCard like '%HD%'";
+		}
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		ResultSet rs = pstm.executeQuery();
+		List<Product> list = new ArrayList<Product>();
+		while (rs.next()) {
+			String code = rs.getString("Code");
+			String name = rs.getString("Name");
+			String price = rs.getString("Price");
+			String brand = rs.getString("Brand");
+			String cpu = rs.getString("Cpu");
+			String graphicCard = rs.getString("GraphicCard");
+			String description = rs.getString("Description");
+			String image = rs.getString("image");
+			
+			Product product = new Product();
+			product.setCode(code);
+			product.setName(name);
+			product.setPrice(price);
+			product.setBrand(brand);
+			product.setCpu(cpu);
+			product.setGraphicCard(graphicCard);
+			product.setDescription(description);
+			product.setImage(image);
+			
+			list.add(product);
+		}
+		return list;
+	}
 
 	public static List<Product> queryCart(Connection conn, String userid) throws SQLException {
 		String sql = "Select cart_item from cart where cart_user='" + userid + "'";

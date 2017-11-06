@@ -16,26 +16,26 @@
     });
 </script>
 
-<div style="position: relative; float: right; width: 80px;" id="right_section">
+<div style="position: relative; float: right; width: 150px;" id="right_section">
     <div class="box" style="padding: 10px; margin: 0 0 20px;">
-        <div class="text-center" style="font-size: 0.2em; margin: 0 0 20px;">최근 본 상품</div>
+        <div class="text-center" style="font-size: 1em; margin: 0 0 20px;">최근 본 상품</div>
         <div class="products">
             <a href="#">
                 <img alt="" class="img-responsive">
             </a>
-            <div class="text-center" style="font-size: 0.2em;"></div>
+            <div class="text-center" style="font-size: 1em;"></div>
         </div>
         <div class="products">
             <a href="#">
                 <img alt="" class="img-responsive">
             </a>
-            <div class="text-center" style="font-size: 0.2em;"></div>
+            <div class="text-center" style="font-size: 1em;"></div>
         </div>
         <div class="products">
             <a href="#">
                 <img alt="" class="img-responsive">
             </a>
-            <div class="text-center" style="font-size: 0.2em;"></div>
+            <div class="text-center" style="font-size: 1em;"></div>
         </div>
     </div>
 </div>
