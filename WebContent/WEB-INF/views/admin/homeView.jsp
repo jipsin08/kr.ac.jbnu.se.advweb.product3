@@ -79,8 +79,8 @@
                                 <div class="icon"><i class="fa fa-heart"></i>
                                 </div>
 
-                                <h3><a href="#">We love our customers</a></h3>
-                                <p>We are known to provide best possible service ever</p>
+                                <h3><a href="#">고객 사랑</a></h3>
+                                <p>우리는 고객에게 최고의 서비스를 제공합니다.</p>
                             </div>
                         </div>
 
@@ -89,8 +89,8 @@
                                 <div class="icon"><i class="fa fa-tags"></i>
                                 </div>
 
-                                <h3><a href="#">Best prices</a></h3>
-                                <p>You can check that the height of the boxes adjust when longer text like this one is used in one of them.</p>
+                                <h3><a href="#">착한 가격</a></h3>
+                                <p>판타스틱한 가격에 여러분들을 모시겠습니다.</p>
                             </div>
                         </div>
 
@@ -99,8 +99,8 @@
                                 <div class="icon"><i class="fa fa-thumbs-up"></i>
                                 </div>
 
-                                <h3><a href="#">100% satisfaction guaranteed</a></h3>
-                                <p>Free returns on everything for 3 months.</p>
+                                <h3><a href="#">100% 만족도</a></h3>
+                                <p>모든 제품은 3개월 동안 무료로 환불이 가능합니다.</p>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                 <div class="box">
                     <div class="container">
                         <div class="col-md-12">
-                            <h2>Hot this week</h2>
+                            <h2>제품들</h2>
                         </div>
                     </div>
                 </div>
@@ -135,18 +135,18 @@
 	                                    <div class="flipper">
 	                                        <div class="front">
 	                                            <a href="${pageContext.request.contextPath}/detail?product=${product.code}">
-	                                                <img src="resources/img/product1.jpg" alt="" class="img-responsive">
+	                                                <img src="${product.image}" alt="" class="img-responsive">
 	                                            </a>
 	                                        </div>
 	                                        <div class="back">
 	                                            <a href="${pageContext.request.contextPath}/detail?product=${product.code}">
-	                                                <img src="resources/img/product1_2.jpg" alt="" class="img-responsive">
+	                                                <img src="${product.image}" alt="" class="img-responsive">
 	                                            </a>
 	                                        </div>
 	                                    </div>
 	                                </div>
 	                                <a href="${pageContext.request.contextPath}/detail?product=${product.code}" class="invisible">
-	                                    <img src="resources/img/product1.jpg" alt="" class="img-responsive">
+	                                    <img src="${product.image}" alt="" class="img-responsive">
 	                                </a>
 	                                <div class="text">
 	                                    <h3><a href="${pageContext.request.contextPath}/detail?product=${product.code}">${product.name}</a></h3>
@@ -157,6 +157,10 @@
 	                            <!-- /.product -->
 	                        </div>
 	                    </c:forEach>
+
+                    <!-- /.product-slider -->
+                <!-- /.container -->
+
 <!--                         <div class="item"> -->
 <!--                             <div class="product"> -->
 <!--                                 <div class="flip-container"> -->
@@ -443,86 +447,35 @@
 
             <!-- *** GET INSPIRED ***
  _________________________________________________________ -->
-            <div class="container" data-animate="fadeInUpBig">
-                <div class="col-md-12">
-                    <div class="box slideshow">
-                        <h3>Get Inspired</h3>
-                        <p class="lead">Get the inspiration from our world class designers</p>
-                        <div id="get-inspired" class="owl-carousel owl-theme">
-                            <div class="item">
-                                <a href="#">
-                                    <img src="resources/img/getinspired1.jpg" alt="Get inspired" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#">
-                                    <img src="resources/img/getinspired2.jpg" alt="Get inspired" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#">
-                                    <img src="resources/img/getinspired3.jpg" alt="Get inspired" class="img-responsive">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--             <div class="container" data-animate="fadeInUpBig"> -->
+<!--                 <div class="col-md-12"> -->
+<!--                     <div class="box slideshow"> -->
+<!--                         <h3>Get Inspired</h3> -->
+<!--                         <p class="lead">Get the inspiration from our world class designers</p> -->
+<!--                         <div id="get-inspired" class="owl-carousel owl-theme"> -->
+<!--                             <div class="item"> -->
+<!--                                 <a href="#"> -->
+<!--                                     <img src="resources/img/getinspired1.jpg" alt="Get inspired" class="img-responsive"> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                             <div class="item"> -->
+<!--                                 <a href="#"> -->
+<!--                                     <img src="resources/img/getinspired2.jpg" alt="Get inspired" class="img-responsive"> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                             <div class="item"> -->
+<!--                                 <a href="#"> -->
+<!--                                     <img src="resources/img/getinspired3.jpg" alt="Get inspired" class="img-responsive"> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
             <!-- *** GET INSPIRED END *** -->
 
             <!-- *** BLOG HOMEPAGE ***
  _________________________________________________________ -->
-
-            <div class="box text-center" data-animate="fadeInUp">
-                <div class="container">
-                    <div class="col-md-12">
-                        <h3 class="text-uppercase">From our blog</h3>
-
-                        <p class="lead">What's new in the world of fashion? <a href="blog.html">Check our blog!</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-
-                <div class="col-md-12" data-animate="fadeInUp">
-
-                    <div id="blog-homepage" class="row">
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="post.html">Fashion now</a></h4>
-                                <p class="author-category">By <a href="#">John Slim</a> in <a href="">Fashion and style</a>
-                                </p>
-                                <hr>
-                                <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                    ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="post.html">Who is who - example blog post</a></h4>
-                                <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a>
-                                </p>
-                                <hr>
-                                <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                    ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- /#blog-homepage -->
-                </div>
-            </div>
-            <!-- /.container -->
-
-            <!-- *** BLOG HOMEPAGE END *** -->
 
 
         </div>
