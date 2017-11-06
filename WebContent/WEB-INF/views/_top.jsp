@@ -17,18 +17,32 @@
 		});
 		
 		//로그인 요청
-		$("#login_form_id").on('submit', function(e) {
+		$("#btn-login").on('click', function(e) {
 			$.post('${pageContext.request.contextPath}/login', {
-				userName : $("#name_id").val(),
-				password : $("#passwd_id").val(),
-				rememberMe : $("#rememberMe_id").val()
+				email : $("#email-modal").val(),
+				password : $("#password-modal").val(),
+				rememberMe : $("#rememberMe").val()
 			}, function(data) {
-				// move another page
-				var win = window.open();
-				win.document.write(data);
+				if(data == "isBlocked") {
+					alert("본 계정은 정지되었습니다. 관리자에게 문의해주세요.")
+					return;
+				}
+				
+				if(data == "isAdmin") {
+	 				window.location.replace("${pageContext.request.contextPath}/admin_home");
+				} else {
+	 				window.location.replace("${pageContext.request.contextPath}/home");
+				}
+			}).done(function() {
+// 				alert("성공!");
+// 				window.location.replace("${pageContext.request.contextPath}/home");
+			}).fail(function(jqXHR) {
+				alert("실패");
+			}).always(function() {
+			// 					alert("항상!");
 			});
 		});
-
+		
 		//로그아웃
 		$('ul.menu li').click(function(e) {
 			if ($(this).text() == '로그아웃') {
@@ -63,7 +77,7 @@
 					<h4 class="modal-title" id="Login">로그인</h4>
 				</div>
 				<div class="modal-body">
-					<form id="login_form_id" action="login" method="POST">
+<!-- 					<form id="login_form_id" action="login" method="POST"> -->
 						<div class="form-group">
 							<input type="text" class="form-control" id="email-modal" name="email" placeholder="email" value="" />
 						</div>
@@ -75,11 +89,11 @@
 							<input type="checkbox" id="rememberMe-id" name="rememberMe" value="Y" /> 로그인 상태 유지
 						</p>
 						<p class="text-center">
-							<button id="btn-login" class="btn btn-primary" type="submit">
+							<button id="btn-login" class="btn btn-primary">
 								<i class="fa fa-sign-in"></i> 로그인
 							</button>
 						</p>
-					</form>
+<!-- 					</form> -->
 
 					<p class="text-center text-muted">아직 가입을 안하셨다구요?</p>
 					<p class="text-center text-muted">

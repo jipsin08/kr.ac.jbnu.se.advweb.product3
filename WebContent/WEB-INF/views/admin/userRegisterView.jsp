@@ -235,7 +235,6 @@
 			errorClass: "validation-error"
 		});
 		
-		//회원등록
 		$("#register-button").on('click', function() {
 			if($("#form_user_register").valid()) {
 				$.post('${pageContext.request.contextPath}/user_register', {
@@ -251,9 +250,8 @@
 					alert("성공!");
 					window.location.replace("${pageContext.request.contextPath}/home");
 				}).fail(function(jqXHR) {
-					if(jqXHR.status == "403") {
-						alert("본 이메일은 정지된 이메일입니다. 다른 이메일로 가입해주세요.")
-					}
+					alert("실패!");
+					alert("에러메시지" + jqXHR.responseText);
 				}).always(function() {
 				// 					alert("항상!");
 				});
@@ -261,7 +259,6 @@
 			}
 		});
 
-		
 		//회원가입 옆에 있는 로그인 화면
 		$("#login-button").on('click', function() {
 			$.post('${pageContext.request.contextPath}/login', {
@@ -269,21 +266,14 @@
 				password : $("#login-password").val(),
 				rememberMe : $("#rememberMe-id").is(":checked"),
 			}, function(data, status, jqXHR) {
-				if(data == "isBlocked") {
-					alert("본 계정은 정지되었습니다. 관리자에게 문의해주세요.")
-					return;
-				}
-				
-				if(data == "isAdmin") {
-	 				window.location.replace("${pageContext.request.contextPath}/admin_home");
-				} else {
-	 				window.location.replace("${pageContext.request.contextPath}/home");
-				}
+			// 			        alert( "\nStatus: " + status);
+			// 			        alert( "\nStatus: " + jqXHR.status);
 			}).done(function() {
-// 				alert("성공!");
-// 				window.location.replace("${pageContext.request.contextPath}/home");
+				alert("성공!");
+				window.location.replace("${pageContext.request.contextPath}/home");
 			}).fail(function(jqXHR) {
-				alert("실패");
+				alert("실패!");
+				alert("에러메시지" + jqXHR.responseText);
 			}).always(function() {
 			// 					alert("항상!");
 			});
