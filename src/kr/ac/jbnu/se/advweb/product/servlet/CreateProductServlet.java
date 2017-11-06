@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -19,6 +20,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
@@ -36,6 +38,15 @@ public class CreateProductServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		if(loginedUser == null)
+		{
+			response.sendRedirect(request.getContextPath() + "/user_register");
+			return;
+		}
 		
 		RequestDispatcher dispatcher = request.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
@@ -71,29 +82,24 @@ public class CreateProductServlet extends HttpServlet {
 					if (!item.isFormField()) {
 						String name = new File(item.getName()).getName();
 						item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-//						image = UPLOAD_DIRECTORY + File.separator + name;
+						// image = UPLOAD_DIRECTORY + File.separator + name;
 						image = "resources/img/" + name;
-//						System.out.println(image);
+						// System.out.println(image);
 					} else {
 						String fieldName = item.getFieldName();
 						String fieldValue = item.getString();
 
 						if (fieldName.equals("name")) {
 							p_name = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
-						}
-						else if (fieldName.equals("price")) {
+						} else if (fieldName.equals("price")) {
 							price = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
-						}
-						else if (fieldName.equals("brand")) {	
+						} else if (fieldName.equals("brand")) {
 							brand = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
-						}
-						else if (fieldName.equals("cpu")) {
+						} else if (fieldName.equals("cpu")) {
 							cpu = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
-						}
-						else if (fieldName.equals("graphiccard")) {
+						} else if (fieldName.equals("graphiccard")) {
 							graphicCard = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
-						}
-						else if (fieldName.equals("description")) {
+						} else if (fieldName.equals("description")) {
 							description = new String(fieldValue.getBytes("iso-8859-1"), "UTF-8");
 						}
 					}
@@ -128,27 +134,27 @@ public class CreateProductServlet extends HttpServlet {
 				errorString = e.getMessage();
 			}
 		}
-		
+
 		RequestDispatcher dispatcher //
-			= this.getServletContext().getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
+				= this.getServletContext().getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
 
 		dispatcher.forward(request, response);
 
 		// Store infomation to request attribute, before forward to views.
-//		request.setAttribute("errorString", errorString);
-//		request.setAttribute("product", product);
+		// request.setAttribute("errorString", errorString);
+		// request.setAttribute("product", product);
 
 		// If error, forward to Edit page.
-//		if (errorString != null) {
-//			RequestDispatcher dispatcher = request.getServletContext()
-//					.getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
-//			dispatcher.forward(request, response);
-//		}
-//		// If everything nice.
-//		// Redirect to the product listing page.
-//		else {
-//			response.sendRedirect(request.getContextPath() + "/productList");
-//		}
+		// if (errorString != null) {
+		// RequestDispatcher dispatcher = request.getServletContext()
+		// .getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
+		// dispatcher.forward(request, response);
+		// }
+		// // If everything nice.
+		// // Redirect to the product listing page.
+		// else {
+		// response.sendRedirect(request.getContextPath() + "/productList");
+		// }
 	}
 
 }
