@@ -30,37 +30,14 @@
 <!-- your stylesheet with modifications -->
 <link href="resources/css/custom.css" rel="stylesheet">
 
-<script src="resources/js/respond.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.1/classic/ckeditor.js"></script>
-
 <link rel="shortcut icon" href="favicon.png">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#post-button").on('click', function() {
-			var dt = new Date(); 
-		    var datetime = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() + " " + 
-		    dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-		    
-			$.post('${pageContext.request.contextPath}/board_edit', {
-				title : $("#title").val(),
-				date : datetime,
-				contents : myEditor.getData(),
-			}, function(data, status, jqXHR) {
-			// 			        alert( "\nStatus: " + status);
-			// 			        alert( "\nStatus: " + jqXHR.status);
-			}).done(function() {
-				alert("성공!");
- 				window.location.replace("${pageContext.request.contextPath}/board");
-			}).fail(function(jqXHR) {
-				alert("실패!");
-				alert("에러메시지" + jqXHR.responseText);
-			}).always(function() {
-			// 					alert("항상!");
-			});
-		});
-	});
-</script>
+
+<style>
+.ck-editor__editable {
+	min-height: 400px;
+}
+</style>
+
 </head>
 <body>
 	<jsp:include page="_top.jsp"></jsp:include>
@@ -84,8 +61,7 @@
 								<div class="form-group">
 									<input type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
 								</div>
-								<textarea name="content" id="editor">
-								<p>초기 데이터</p>
+								<textarea class="ck-editor__editable" name="content" id="editor">
 							    </textarea>
 								<a id="post-button" href="#" class="btn btn-default">글쓰기</a>
 							</div>
@@ -247,19 +223,66 @@
 	<script src="resources/js/bootstrap-hover-dropdown.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/front.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="resources/js/respond.min.js"></script>
+<!-- 	<script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.1/classic/ckeditor.js"></script> -->
+	<script src="resources/ckeditor/ckeditor.js"></script>
 
 	<script>
 		var myEditor;
 	
-	    ClassicEditor
-	        .create( document.querySelector( '#editor' ) )
-	        .then( editor => {
-        		console.log( editor );
-        		myEditor = editor;
-    		} )
-	        .catch( error => {
-	            console.error( error );
-	        } );
+// 	    ClassicEditor
+// 	        .create( document.querySelector( '#editor' ) )
+// 	        .then( editor => {
+//         		console.log( editor );
+//         		myEditor = editor;
+//     		} )
+// 	        .catch( error => {
+// 	            console.error( error );
+// 	        } );
+ 		CKEDITOR.replace('editor');
     </script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#post-button").on('click', function() {
+			
+			if($("#title").val().trim() == "") {
+				alert("제목을 입력해주세요.");
+				return;
+			}
+			
+    		var EditorData = CKEDITOR.instances.editor.getData();
+			
+			if(EditorData == "") {
+				alert("내용을 입력해주세요.");
+				return;
+			}
+			
+			var dt = new Date(); 
+		    var datetime = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() + " " + 
+		    dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+		    
+			$.post('${pageContext.request.contextPath}/board_edit', {
+				title : $("#title").val(),
+				date : datetime,
+				contents : EditorData,
+			}, function(data, status, jqXHR) {
+			// 			        alert( "\nStatus: " + status);
+			// 			        alert( "\nStatus: " + jqXHR.status);
+			}).done(function() {
+				alert("성공!");
+ 				window.location.replace("${pageContext.request.contextPath}/board");
+			}).fail(function(jqXHR) {
+				alert("실패!");
+				alert("에러메시지" + jqXHR.responseText);
+			}).always(function() {
+			// 					alert("항상!");
+			});
+		});
+	});
+</script>
+
+
 </body>
 </html>
